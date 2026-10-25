@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: trc-postgres-14
+    environment:
+      POSTGRES_DB: tracing_db
+      POSTGRES_USER: tracing_user
+      POSTGRES_PASSWORD: tracing_password
+    ports:
+      - "5414:5432"
+    volumes:
+      - trc_pgdata_14:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tracing_user -d tracing_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: trc-redis-14
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6314:6379"
+    volumes:
+      - trc_redisdata_14:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  trc_pgdata_14:
+  trc_redisdata_14:

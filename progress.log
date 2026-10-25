@@ -1,0 +1,322 @@
+2026-10-24T02:45:44.398036+00:00 | ALL | NONE -> NOT_DONE | Initialized 150 features
+2026-10-24T02:46:57.935369+00:00 | TRC-001 | NOT_DONE -> WORKING | Started feature
+2026-10-24T02:49:08.828593+00:00 | TRC-001 | WORKING -> COMPLETED | Completed: W3C compliant immutable TraceContext model with validation and flags
+2026-10-24T02:49:34.127003+00:00 | TRC-002 | NOT_DONE -> WORKING | Started feature
+2026-10-24T02:51:22.854145+00:00 | TRC-002 | WORKING -> COMPLETED | Completed: CSPRNG 16-byte random trace ID generator with zero-rejection invariant
+2026-10-24T02:51:47.956296+00:00 | TRC-003 | NOT_DONE -> WORKING | Started feature
+2026-10-24T02:53:46.686961+00:00 | TRC-003 | WORKING -> COMPLETED | Completed: CSPRNG 8-byte random span ID generator with non-zero invariant
+2026-10-24T02:54:14.340252+00:00 | TRC-004 | NOT_DONE -> WORKING | Started feature
+2026-10-24T02:55:47.815765+00:00 | TRC-004 | WORKING -> COMPLETED | Completed: Span parent-child hierarchy with context inheritance and parent_span_id validation
+2026-10-24T02:57:35.657518+00:00 | TRC-005 | NOT_DONE -> WORKING | Started feature
+2026-10-24T02:59:37.715731+00:00 | TRC-005 | WORKING -> COMPLETED | Completed: Span lifecycle states with start/end timestamps and context manager support
+2026-10-24T03:00:07.616653+00:00 | TRC-006 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:01:43.289163+00:00 | TRC-006 | WORKING -> COMPLETED | Completed: Nanosecond resolution span start timestamp with validation and explicit injection support
+2026-10-24T03:02:12.484499+00:00 | TRC-007 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:03:35.070766+00:00 | TRC-007 | WORKING -> COMPLETED | Completed: Nanosecond span end timestamp with end >= start validation and type checks
+2026-10-24T03:04:05.618034+00:00 | TRC-008 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:05:42.918413+00:00 | TRC-008 | WORKING -> COMPLETED | Completed: Nanosecond derived span duration with ms conversion and active state handling
+2026-10-24T03:06:14.510079+00:00 | TRC-009 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:08:17.023336+00:00 | TRC-009 | WORKING -> COMPLETED | Completed: OTel StatusCode and Status model with post-end immutability enforcement
+2026-10-24T03:08:55.777270+00:00 | TRC-010 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:10:44.357520+00:00 | TRC-010 | WORKING -> COMPLETED | Completed: Span attributes model with type validation and post-end write protection
+2026-10-24T03:11:16.954634+00:00 | TRC-011 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:13:52.359850+00:00 | TRC-011 | WORKING -> COMPLETED | Completed: SpanEvent model with timestamped annotations and exception recording
+2026-10-24T03:14:32.174659+00:00 | TRC-012 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:17:00.179877+00:00 | TRC-012 | WORKING -> COMPLETED | Completed: SpanLink model for causal/batch span relationships with validation and post-end protection
+2026-10-24T03:17:32.897582+00:00 | TRC-013 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:19:53.157222+00:00 | TRC-013 | WORKING -> COMPLETED | Completed: TraceFlags IntFlag and 2-hex character parser and formatter adhering to W3C spec
+2026-10-24T03:20:26.566489+00:00 | TRC-014 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:23:12.921840+00:00 | TRC-014 | WORKING -> COMPLETED | Completed: W3C TraceState model with 32 member cap, prepend mutation rules, and grammar validation
+2026-10-24T03:28:32.163791+00:00 | TRC-015 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:31:03.667131+00:00 | TRC-015 | WORKING -> COMPLETED | Completed: W3C Trace Context propagator with roundtrip inject and extract
+2026-10-24T03:31:17.349775+00:00 | TRC-016 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:32:55.936450+00:00 | TRC-016 | WORKING -> COMPLETED | Completed: Full W3C traceparent header parsing with version, zero, and character validations
+2026-10-24T03:33:06.606267+00:00 | TRC-017 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:34:59.828210+00:00 | TRC-017 | WORKING -> COMPLETED | Completed: W3C tracestate parser supporting single and multi-line headers, tolerant member parsing, and 32-member cap
+2026-10-24T03:35:17.153073+00:00 | TRC-018 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:37:05.654030+00:00 | TRC-018 | WORKING -> COMPLETED | Completed: W3C Baggage model, immutable manipulation, serialization, and header propagator
+2026-10-24T03:37:17.130772+00:00 | TRC-019 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:39:16.279076+00:00 | TRC-019 | WORKING -> COMPLETED | Completed: HTTP header context and baggage propagator supporting standard dicts and raw ASGI byte sequences
+2026-10-24T03:39:28.060255+00:00 | TRC-020 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:41:18.160019+00:00 | TRC-020 | WORKING -> COMPLETED | Completed: gRPC metadata context and baggage propagator supporting tuple sequences and dict structures
+2026-10-24T03:41:31.118534+00:00 | TRC-021 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:43:17.192909+00:00 | TRC-021 | WORKING -> COMPLETED | Completed: WebSocket handshake and JSON message frame context and baggage propagator
+2026-10-24T03:43:28.532807+00:00 | TRC-022 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:45:11.754568+00:00 | TRC-022 | WORKING -> COMPLETED | Completed: Asyncio contextvars propagation with Token restoration and dual sync/async context manager
+2026-10-24T03:45:24.575255+00:00 | TRC-023 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:47:21.427982+00:00 | TRC-023 | WORKING -> COMPLETED | Completed: Thread context propagation using copy_context, wrap_callable, and ContextThreadPoolExecutor
+2026-10-24T03:47:34.203305+00:00 | TRC-024 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:49:27.799039+00:00 | TRC-024 | WORKING -> COMPLETED | Completed: Generic context extractor supporting W3C TraceContext and Baggage with B3 single-header fallback
+2026-10-24T03:49:43.570345+00:00 | TRC-025 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:51:48.012551+00:00 | TRC-025 | WORKING -> COMPLETED | Completed: Generic context injector supporting active span lookup, W3C and B3 headers, and custom carrier setters
+2026-10-24T03:52:01.689197+00:00 | TRC-026 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:53:47.926619+00:00 | TRC-026 | WORKING -> COMPLETED | Completed: Safe fallback starting new root trace on invalid or corrupt headers without unhandled exceptions
+2026-10-24T03:54:01.878554+00:00 | TRC-027 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:57:04.679219+00:00 | TRC-027 | WORKING -> COMPLETED | Completed: Missing parent handling starting clean root span with CSPRNG IDs and preserving baggage
+2026-10-24T03:57:18.749326+00:00 | TRC-028 | NOT_DONE -> WORKING | Started feature
+2026-10-24T03:59:10.522683+00:00 | TRC-028 | WORKING -> COMPLETED | Completed: 4-service cross-transport propagation across HTTP, gRPC, and WebSocket with baggage preservation (S14-02)
+2026-10-24T04:20:34.259266+00:00 | TRC-043 | NOT_DONE -> WORKING | Started feature
+2026-10-24T04:32:37.023425+00:00 | TRC-043 | WORKING -> COMPLETED | Completed: PostgreSQL 16 RLS tenant isolation verified with multi-tenant tables and cross-tenant checks
+2026-10-24T04:32:51.449076+00:00 | TRC-044 | NOT_DONE -> WORKING | Started feature
+2026-10-24T04:34:38.868325+00:00 | TRC-044 | WORKING -> COMPLETED | Completed: Composite (tenant_id, trace_id) keys verified with cross-tenant collision immunity in PostgreSQL 16
+2026-10-24T04:34:53.091319+00:00 | TRC-045 | NOT_DONE -> WORKING | Started feature
+2026-10-24T04:36:47.286755+00:00 | TRC-045 | WORKING -> COMPLETED | Completed: Argon2id hashing, secure prefixing, tenant binding, and revocation verified against PostgreSQL 16
+2026-10-24T04:36:59.196344+00:00 | TRC-046 | NOT_DONE -> WORKING | Started feature
+2026-10-24T04:38:42.700336+00:00 | TRC-046 | WORKING -> COMPLETED | Completed: OIDC claims parsing, issuer/audience validation, and PostgreSQL tenant provisioning verified
+2026-10-24T04:38:55.690057+00:00 | TRC-047 | NOT_DONE -> WORKING | Started feature
+2026-10-24T04:41:27.256342+00:00 | TRC-047 | WORKING -> COMPLETED | Completed: RS256/HS256 signature verification, claims validation, none-algorithm rejection, and DB tenant check verified
+2026-10-24T04:41:42.791637+00:00 | TRC-048 | NOT_DONE -> WORKING | Started feature
+2026-10-24T04:44:07.024955+00:00 | TRC-048 | WORKING -> COMPLETED | Completed: X.509 client certificate chain verification, SAN URI tenant parsing, validity checking, and DB tenant check verified
+2026-10-24T04:44:20.760225+00:00 | TRC-049 | NOT_DONE -> WORKING | Started feature
+2026-10-24T04:46:17.372905+00:00 | TRC-049 | WORKING -> COMPLETED | Completed: RBAC deny-by-default server authorization and PostgreSQL API key role integration verified
+2026-10-24T04:46:33.521258+00:00 | TRC-050 | NOT_DONE -> WORKING | Started feature
+2026-10-24T04:48:22.804414+00:00 | TRC-050 | WORKING -> COMPLETED | Completed: Fine-grained service scope and classification tag authorization verified against PostgreSQL 16
+2026-10-24T04:48:34.636820+00:00 | TRC-051 | NOT_DONE -> WORKING | Started feature
+2026-10-24T04:50:14.408106+00:00 | TRC-051 | WORKING -> COMPLETED | Completed: Recursive sensitive attribute redaction verified with raw PostgreSQL JSONB inspection
+2026-10-24T04:50:29.048051+00:00 | TRC-052 | NOT_DONE -> WORKING | Started feature
+2026-10-24T04:52:32.856607+00:00 | TRC-052 | WORKING -> COMPLETED | Completed: PII detection and sanitization for emails, SSNs, cards, phones, and IPs verified in PostgreSQL 16
+2026-10-24T04:53:01.960362+00:00 | TRC-053 | NOT_DONE -> WORKING | Started feature
+2026-10-24T04:55:38.806963+00:00 | TRC-053 | WORKING -> COMPLETED | Completed: HTTP and OpenTelemetry header attribute redaction verified with raw PostgreSQL JSONB inspection
+2026-10-24T04:56:05.846419+00:00 | TRC-054 | NOT_DONE -> WORKING | Started feature
+2026-10-24T04:58:08.762416+00:00 | TRC-054 | WORKING -> COMPLETED | Completed: Payload byte bounds, string length truncation, attribute count capping, and Postgres storage verified
+2026-10-24T04:58:36.456691+00:00 | TRC-055 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:02:52.753441+00:00 | TRC-055 | WORKING -> COMPLETED | Completed: Redis sliding-window rate limiting, tenant quota isolation, and PostgreSQL custom limits verified
+2026-10-24T05:03:36.480313+00:00 | TRC-056 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:08:39.913847+00:00 | TRC-056 | WORKING -> COMPLETED | Completed: Official protobuf ExportTraceServiceRequest ingestion with normalization and PostgreSQL 16 persistence.
+2026-10-24T05:09:22.300176+00:00 | TRC-057 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:11:35.463161+00:00 | TRC-057 | WORKING -> COMPLETED | Completed: OTLP/gRPC receiver running over real gRPC async server with tenant metadata and DB persistence.
+2026-10-24T05:11:54.193380+00:00 | TRC-058 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:13:42.224205+00:00 | TRC-058 | WORKING -> COMPLETED | Completed: OTLP/HTTP receiver endpoint /v1/traces supporting protobuf and JSON with PostgreSQL 16 persistence.
+2026-10-24T05:13:59.707545+00:00 | TRC-059 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:15:59.207722+00:00 | TRC-059 | WORKING -> COMPLETED | Completed: Batch span bulk insertion into PostgreSQL 16 with chunked transactions.
+2026-10-24T05:16:13.357492+00:00 | TRC-060 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:18:03.443971+00:00 | TRC-060 | WORKING -> COMPLETED | Completed: Asynchronous streaming span ingestion with chunked flushing into PostgreSQL 16.
+2026-10-24T05:18:14.802401+00:00 | TRC-061 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:20:08.653472+00:00 | TRC-061 | WORKING -> COMPLETED | Completed: Strict validation of span IDs, trace IDs, duration, service names, and storage invariants.
+2026-10-24T05:20:19.483586+00:00 | TRC-062 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:22:09.719435+00:00 | TRC-062 | WORKING -> COMPLETED | Completed: OpenTelemetry 1.x schema compliance validator for URLs, attribute specifications, and database records.
+2026-10-24T05:22:22.510523+00:00 | TRC-063 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:24:56.069872+00:00 | TRC-063 | WORKING -> COMPLETED | Completed: Isolation and partial success error reporting for malformed spans without batch abort.
+2026-10-24T05:25:14.265705+00:00 | TRC-064 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:29:20.674006+00:00 | TRC-064 | WORKING -> COMPLETED | Completed: Queue saturation control returning HTTP 429 Retry-After with bounded memory and rejection counters.
+2026-10-24T05:29:42.367529+00:00 | TRC-065 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:31:18.258749+00:00 | TRC-065 | WORKING -> COMPLETED | Completed: Redis Streams queue buffering with XADD, consumer groups, XREADGROUP, and ACK processing.
+2026-10-24T05:31:30.500937+00:00 | TRC-066 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:33:14.519409+00:00 | TRC-066 | WORKING -> COMPLETED | Completed: Queue batch worker draining Redis Streams and committing bulk transactions into PostgreSQL 16.
+2026-10-24T05:33:58.061340+00:00 | TRC-067 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:36:29.528328+00:00 | TRC-067 | WORKING -> COMPLETED | Completed: Exponential backoff retry logic for transient database errors with eventual PostgreSQL 16 persistence.
+2026-10-24T05:36:44.807382+00:00 | TRC-068 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:38:24.370865+00:00 | TRC-068 | WORKING -> COMPLETED | Completed: Partial failure isolation with standard OTLP ExportTracePartialSuccess responses.
+2026-10-24T05:38:38.373004+00:00 | TRC-069 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:40:27.773366+00:00 | TRC-069 | WORKING -> COMPLETED | Completed: Idempotent span batch ingestion and deduplication on (tenant_id, trace_id, span_id) in PostgreSQL 16.
+2026-10-24T05:40:48.247258+00:00 | TRC-058 | COMPLETED -> NOT_DONE | Check rerun failed: platforms/projects/14-tracing-backend/backend/tests/test_http_receiver.py::test_otlp_http_receiver_protobuf_and_json
+2026-10-24T05:40:48.554983+00:00 | TRC-062 | COMPLETED -> NOT_DONE | Check rerun failed: platforms/projects/14-tracing-backend/backend/tests/test_schema_validation.py::test_schema_validator_urls
+2026-10-24T05:40:50.198594+00:00 | TRC-057 | COMPLETED -> NOT_DONE | Check rerun failed: platforms/projects/14-tracing-backend/backend/tests/test_grpc_receiver.py::test_otlp_grpc_receiver_live_network_ingestion
+2026-10-24T05:42:54.140856+00:00 | TRC-057 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:42:54.217169+00:00 | TRC-057 | WORKING -> COMPLETED | Completed: OTLP/gRPC receiver running over real gRPC async server with tenant metadata and DB persistence.
+2026-10-24T05:43:01.067932+00:00 | TRC-058 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:43:01.156814+00:00 | TRC-058 | WORKING -> COMPLETED | Completed: OTLP/HTTP receiver endpoint /v1/traces supporting protobuf and JSON with PostgreSQL 16 persistence.
+2026-10-24T05:43:09.035266+00:00 | TRC-062 | NOT_DONE -> WORKING | Started feature
+2026-10-24T05:43:09.141722+00:00 | TRC-062 | WORKING -> COMPLETED | Completed: OpenTelemetry 1.x schema compliance validator for URLs, attribute specifications, and database records.
+2026-10-24T06:02:34.371648+00:00 | TRC-070 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:05:59.207857+00:00 | TRC-070 | WORKING -> COMPLETED | Completed: Hierarchical trace lookup by ID with root span detection and tenant isolation in PostgreSQL 16.
+2026-10-24T06:06:25.746931+00:00 | TRC-071 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:09:05.484251+00:00 | TRC-071 | WORKING -> COMPLETED | Completed: Aggregated multi-tenant trace search with duration and error detection in PostgreSQL 16.
+2026-10-24T06:09:25.017525+00:00 | TRC-072 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:12:36.753334+00:00 | TRC-072 | WORKING -> COMPLETED | Completed: Service filter query on distributed traces in PostgreSQL 16.
+2026-10-24T06:12:46.695172+00:00 | TRC-073 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:16:32.877008+00:00 | TRC-073 | WORKING -> COMPLETED | Completed: Operation filter on span name across tenant-scoped traces in PostgreSQL 16.
+2026-10-24T06:16:33.000466+00:00 | TRC-074 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:16:33.072797+00:00 | TRC-075 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:16:33.204106+00:00 | TRC-076 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:19:48.911725+00:00 | TRC-074 | WORKING -> COMPLETED | Completed: Duration filter via PostgreSQL HAVING clause on trace aggregations.
+2026-10-24T06:19:48.983359+00:00 | TRC-075 | WORKING -> COMPLETED | Completed: Status filter via subquery matching status_code values OK/ERROR/UNSET.
+2026-10-24T06:19:49.044654+00:00 | TRC-076 | WORKING -> COMPLETED | Completed: Time-range filter on start_time_unix_nano with min/max bounds in nanoseconds.
+2026-10-24T06:19:59.834795+00:00 | TRC-077 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:19:59.931373+00:00 | TRC-078 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:20:00.024477+00:00 | TRC-079 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:25:15.116721+00:00 | TRC-077 | WORKING -> COMPLETED | Completed: JSONB attribute containment query in trace search
+2026-10-24T06:25:15.796535+00:00 | TRC-078 | WORKING -> COMPLETED | Completed: Tag key existence filtering with PostgreSQL JSONB
+2026-10-24T06:25:16.347435+00:00 | TRC-079 | WORKING -> COMPLETED | Completed: Trace search pagination using offset and limit
+2026-10-24T06:25:31.431619+00:00 | TRC-080 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:25:31.508510+00:00 | TRC-081 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:25:31.589695+00:00 | TRC-082 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:29:34.256206+00:00 | TRC-080 | WORKING -> COMPLETED | Completed: Keyset cursor pagination with base64 composite cursors
+2026-10-24T06:29:34.351053+00:00 | TRC-081 | WORKING -> COMPLETED | Completed: Configurable sorting by start_time, duration, span_count
+2026-10-24T06:29:34.431556+00:00 | TRC-082 | WORKING -> COMPLETED | Completed: Full-text and pattern search on spans
+2026-10-24T06:29:45.121020+00:00 | TRC-083 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:32:03.032876+00:00 | TRC-083 | WORKING -> COMPLETED | Completed: PostgreSQL aggregate trace metrics with counts, error rates, and duration stats
+2026-10-24T06:32:31.238575+00:00 | TRC-084 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:32:31.314375+00:00 | TRC-085 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:32:31.386216+00:00 | TRC-086 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:37:09.245472+00:00 | TRC-084 | WORKING -> COMPLETED | Completed: Head sampling evaluation at root span before execution
+2026-10-24T06:37:09.357295+00:00 | TRC-085 | WORKING -> COMPLETED | Completed: Trace ID modulo probability sampling converging to target rate
+2026-10-24T06:37:09.434760+00:00 | TRC-086 | WORKING -> COMPLETED | Completed: Token bucket rate-based sampling with burst capacity control
+2026-10-24T06:37:20.789399+00:00 | TRC-087 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:37:20.893212+00:00 | TRC-088 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:37:20.960781+00:00 | TRC-089 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:41:37.858699+00:00 | TRC-087 | WORKING -> COMPLETED | Completed: OpenTelemetry ParentBased sampling hierarchy and delegation
+2026-10-24T06:41:37.939493+00:00 | TRC-088 | WORKING -> COMPLETED | Completed: Deterministic trace ID modulo ratio sampling across services
+2026-10-24T06:41:38.008033+00:00 | TRC-089 | WORKING -> COMPLETED | Completed: Sequential rule-based sampling policy engine with pattern matching
+2026-10-24T06:41:52.981008+00:00 | TRC-090 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:41:53.060156+00:00 | TRC-091 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:41:53.128117+00:00 | TRC-092 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:46:25.451216+00:00 | TRC-090 | WORKING -> COMPLETED | Completed: Per-service configurable sampling rates and dynamic updates
+2026-10-24T06:46:25.557929+00:00 | TRC-091 | WORKING -> COMPLETED | Completed: Per-route sampling with template matching and default fallbacks
+2026-10-24T06:46:25.624483+00:00 | TRC-092 | WORKING -> COMPLETED | Completed: Guaranteed retention for error spans, HTTP 5xx, and exceptions
+2026-10-24T06:46:37.134734+00:00 | TRC-093 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:46:37.223044+00:00 | TRC-094 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:46:37.295925+00:00 | TRC-095 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:50:31.548754+00:00 | TRC-093 | WORKING -> COMPLETED | Completed: Latency threshold sampling retaining slow operations
+2026-10-24T06:50:31.635128+00:00 | TRC-094 | WORKING -> COMPLETED | Completed: Multi-attribute tail sampling evaluation over entire traces
+2026-10-24T06:50:31.709129+00:00 | TRC-095 | WORKING -> COMPLETED | Completed: Memory-bounded tail sampling buffer with decision window
+2026-10-24T06:50:44.017968+00:00 | TRC-096 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:50:45.251528+00:00 | TRC-097 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:54:23.345466+00:00 | TRC-096 | WORKING -> COMPLETED | Completed: Tail sampling decision window with late span attachment
+2026-10-24T06:54:23.481641+00:00 | TRC-097 | WORKING -> COMPLETED | Completed: Priority class sampling (CRITICAL/HIGH/NORMAL/LOW) based on span attributes
+2026-10-24T06:54:56.384892+00:00 | TRC-098 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:54:56.489287+00:00 | TRC-099 | NOT_DONE -> WORKING | Started feature
+2026-10-24T06:54:56.575155+00:00 | TRC-100 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:00:00.708871+00:00 | TRC-098 | WORKING -> COMPLETED | Completed: REST API for trace lookup by ID with multi-tenant isolation
+2026-10-24T07:00:00.793218+00:00 | TRC-099 | WORKING -> COMPLETED | Completed: REST API for trace search with filters, ordering, pagination
+2026-10-24T07:00:00.867692+00:00 | TRC-100 | WORKING -> COMPLETED | Completed: REST API listing services and operations per tenant
+2026-10-24T07:00:20.841401+00:00 | TRC-101 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:00:20.971964+00:00 | TRC-102 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:00:21.054954+00:00 | TRC-103 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:04:30.006960+00:00 | TRC-101 | WORKING -> COMPLETED | Completed: Service dependency graph aggregation across caller/callee links
+2026-10-24T07:04:30.087675+00:00 | TRC-102 | WORKING -> COMPLETED | Completed: Dynamic sampling rules and policies management REST API
+2026-10-24T07:04:30.164811+00:00 | TRC-103 | WORKING -> COMPLETED | Completed: Batch span ingestion REST API with validation and database commit
+2026-10-24T07:04:42.800687+00:00 | TRC-104 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:04:42.892695+00:00 | TRC-105 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:04:42.962820+00:00 | TRC-106 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:09:31.274291+00:00 | TRC-104 | WORKING -> COMPLETED | Completed: Liveness probe GET /healthz with process uptime tracking
+2026-10-24T07:09:31.430811+00:00 | TRC-105 | WORKING -> COMPLETED | Completed: Readiness probe GET /readyz executing real DB dependency checks
+2026-10-24T07:09:32.458220+00:00 | TRC-106 | WORKING -> COMPLETED | Completed: Prometheus metrics export endpoint GET /metrics in standard exposition format
+2026-10-24T07:09:48.076782+00:00 | TRC-107 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:09:48.192418+00:00 | TRC-108 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:09:48.264194+00:00 | TRC-109 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:14:48.413040+00:00 | TRC-107 | WORKING -> COMPLETED | Completed: Admin maintenance and trace purge API
+2026-10-24T07:14:53.108171+00:00 | TRC-108 | WORKING -> COMPLETED | Completed: Dynamic engine configuration and tuning API
+2026-10-24T07:14:58.604653+00:00 | TRC-109 | WORKING -> COMPLETED | Completed: Tenant lifecycle management and metadata API
+2026-10-24T07:15:21.834448+00:00 | TRC-110 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:15:26.746971+00:00 | TRC-111 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:22:44.351601+00:00 | TRC-110 | WORKING -> COMPLETED | Completed: FastAPI authentication middleware with API key validation
+2026-10-24T07:22:49.658014+00:00 | TRC-111 | WORKING -> COMPLETED | Completed: FastAPI RBAC authorization middleware and route dependencies
+2026-10-24T07:24:20.117897+00:00 | TRC-112 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:24:25.509687+00:00 | TRC-113 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:24:30.827855+00:00 | TRC-114 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:35:52.280300+00:00 | TRC-112 | WORKING -> COMPLETED | Completed: Trace Explorer UI and search integration
+2026-10-24T07:35:58.609694+00:00 | TRC-113 | WORKING -> COMPLETED | Completed: Trace Detail page with span breakdown and metadata
+2026-10-24T07:36:09.330939+00:00 | TRC-114 | WORKING -> COMPLETED | Completed: Interactive waterfall execution timeline
+2026-10-24T07:36:27.437362+00:00 | TRC-115 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:36:33.527667+00:00 | TRC-116 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:36:39.431341+00:00 | TRC-117 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:43:13.827030+00:00 | TRC-115 | WORKING -> COMPLETED | Completed: Hierarchical span call tree component
+2026-10-24T07:43:20.482809+00:00 | TRC-116 | WORKING -> COMPLETED | Completed: Architecture service topology map
+2026-10-24T07:43:42.361660+00:00 | TRC-117 | WORKING -> COMPLETED | Completed: Inter-service dependency graph visualization
+2026-10-24T07:43:57.240572+00:00 | TRC-118 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:44:12.526007+00:00 | TRC-119 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:44:26.744958+00:00 | TRC-120 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:52:46.692009+00:00 | TRC-118 | WORKING -> COMPLETED | Completed: Latency percentile breakdown and distribution charts
+2026-10-24T07:52:53.251457+00:00 | TRC-119 | WORKING -> COMPLETED | Completed: Error-rate breakdown charts and service ratios
+2026-10-24T07:53:00.489509+00:00 | TRC-120 | WORKING -> COMPLETED | Completed: Interactive span attribute viewer with type badges
+2026-10-24T07:53:19.671367+00:00 | TRC-121 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:53:26.996964+00:00 | TRC-122 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:53:33.402367+00:00 | TRC-123 | NOT_DONE -> WORKING | Started feature
+2026-10-24T07:59:45.473262+00:00 | TRC-121 | WORKING -> COMPLETED | Completed: Span event viewer component rendering inline span events
+2026-10-24T07:59:50.288897+00:00 | TRC-122 | WORKING -> COMPLETED | Completed: Trace tags viewer component aggregating unique tags across spans
+2026-10-24T07:59:54.344094+00:00 | TRC-123 | WORKING -> COMPLETED | Completed: Trace links viewer component displaying cross-trace link pointers
+2026-10-24T08:00:03.368082+00:00 | TRC-124 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:03:53.961457+00:00 | TRC-124 | WORKING -> COMPLETED | Completed: Critical-path highlight analytics and UI component
+2026-10-24T08:04:18.111640+00:00 | TRC-125 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:04:18.182460+00:00 | TRC-126 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:04:18.249535+00:00 | TRC-127 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:06:50.622385+00:00 | TRC-125 | WORKING -> COMPLETED | Completed: High-throughput batch ingestion engine and rate benchmarking
+2026-10-24T08:06:55.300096+00:00 | TRC-126 | WORKING -> COMPLETED | Completed: Concurrent ingestion across parallel tenant workloads
+2026-10-24T08:07:02.527946+00:00 | TRC-127 | WORKING -> COMPLETED | Completed: Large-trace ingestion, topological analysis, and API query
+2026-10-24T08:07:11.885819+00:00 | TRC-128 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:07:11.956980+00:00 | TRC-129 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:07:12.019976+00:00 | TRC-130 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:09:06.259073+00:00 | TRC-128 | WORKING -> COMPLETED | Completed: High-cardinality JSONB attribute indexing and retrieval benchmarks
+2026-10-24T08:09:11.813391+00:00 | TRC-129 | WORKING -> COMPLETED | Completed: Storage load testing under concurrent batch writes and pool concurrency
+2026-10-24T08:09:17.659556+00:00 | TRC-130 | WORKING -> COMPLETED | Completed: Query load testing with p50/p95 latency and concurrent operations
+2026-10-24T08:09:29.055977+00:00 | TRC-131 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:09:29.126212+00:00 | TRC-132 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:09:29.205736+00:00 | TRC-133 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:11:58.761896+00:00 | TRC-131 | WORKING -> COMPLETED | Completed: Latency benchmarking percentiles and distribution analysis
+2026-10-24T08:12:03.291422+00:00 | TRC-132 | WORKING -> COMPLETED | Completed: Memory profiling using tracemalloc for span allocation analysis
+2026-10-24T08:12:09.311664+00:00 | TRC-133 | WORKING -> COMPLETED | Completed: CPU profiling using cProfile across redaction and sanitization paths
+2026-10-24T08:12:24.205089+00:00 | TRC-134 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:12:24.275123+00:00 | TRC-135 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:12:24.338962+00:00 | TRC-136 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:14:30.768664+00:00 | TRC-134 | WORKING -> COMPLETED | Completed: Queue saturation testing and bounded capacity enforcement
+2026-10-24T08:14:38.661382+00:00 | TRC-135 | WORKING -> COMPLETED | Completed: Backpressure testing with HTTP 429 and Retry-After header enforcement
+2026-10-24T08:14:46.425640+00:00 | TRC-136 | WORKING -> COMPLETED | Completed: Collector failover routing between primary and standby replicas
+2026-10-24T08:14:57.687705+00:00 | TRC-137 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:16:56.819183+00:00 | TRC-137 | WORKING -> COMPLETED | Completed: Storage failover reconnection and retry with backoff
+2026-10-24T08:18:10.013234+00:00 | TRC-138 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:18:10.085031+00:00 | TRC-139 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:18:10.148197+00:00 | TRC-140 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:23:31.336638+00:00 | TRC-138 | WORKING -> COMPLETED | Completed: IsolationForest trace anomaly detection model, API and UI viewer
+2026-10-24T08:23:39.991778+00:00 | TRC-139 | WORKING -> COMPLETED | Completed: Robust MAD/EWMA latency anomaly detector, API, and UI viewer
+2026-10-24T08:23:45.907463+00:00 | TRC-140 | WORKING -> COMPLETED | Completed: CUSUM change-point and Poisson error-spike detector, API, and UI viewer
+2026-10-24T08:24:12.595767+00:00 | TRC-141 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:24:12.663590+00:00 | TRC-146 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:24:12.728556+00:00 | TRC-147 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:29:02.772510+00:00 | TRC-141 | WORKING -> COMPLETED | Completed: Root-cause candidate ranking based on critical-path self-time and error propagation
+2026-10-24T08:29:09.589715+00:00 | TRC-146 | WORKING -> COMPLETED | Completed: Service dependency topology and call volume/latency anomaly detection
+2026-10-24T08:29:16.725751+00:00 | TRC-147 | WORKING -> COMPLETED | Completed: Non-parametric Mann-Whitney U release performance regression test
+2026-10-24T08:29:30.312416+00:00 | TRC-145 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:29:30.397655+00:00 | TRC-148 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:29:30.469390+00:00 | TRC-149 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:34:34.270231+00:00 | TRC-145 | WORKING -> COMPLETED | Completed: Semantic trace search using SentenceTransformer all-MiniLM-L6-v2 vector embeddings
+2026-10-24T08:34:42.722514+00:00 | TRC-148 | WORKING -> COMPLETED | Completed: Slow-span prediction using gradient-boosted trees and holdout metrics
+2026-10-24T08:34:49.906671+00:00 | TRC-149 | WORKING -> COMPLETED | Completed: Budget-constrained sampling recommendation with error and latency guarantees
+2026-10-24T08:35:04.013722+00:00 | TRC-150 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:37:57.510826+00:00 | TRC-150 | WORKING -> COMPLETED | Completed: Dynamic sampling optimization with audit trail and guaranteed error/latency floors
+2026-10-24T08:41:02.457971+00:00 | TRC-142 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:41:02.533181+00:00 | TRC-143 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:41:02.606355+00:00 | TRC-144 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:47:22.808211+00:00 | TRC-142 | WORKING -> COMPLETED | Completed: Trace summarization with google/flan-t5-small and 503 unconfigured error path
+2026-10-24T08:47:34.027824+00:00 | TRC-143 | WORKING -> COMPLETED | Completed: Multi-trace incident summarization with google/flan-t5-small
+2026-10-24T08:47:41.516546+00:00 | TRC-144 | WORKING -> COMPLETED | Completed: Natural language query translation to validated structured JSON query schema
+2026-10-24T08:48:07.029146+00:00 | TRC-115 | COMPLETED -> NOT_DONE | Check rerun failed: backend/tests/test_ui_span_tree.py::test_TRC_115_span_tree
+2026-10-24T08:48:43.331335+00:00 | TRC-139 | COMPLETED -> NOT_DONE | Check rerun failed: backend/tests/test_latency_anomaly_detection.py::test_TRC_139_latency_anomaly_model
+2026-10-24T08:48:44.410986+00:00 | TRC-106 | COMPLETED -> NOT_DONE | Check rerun failed: backend/tests/test_metrics_endpoint.py::test_TRC_106_metrics_endpoint
+2026-10-24T08:48:45.384737+00:00 | TRC-104 | COMPLETED -> NOT_DONE | Check rerun failed: backend/tests/test_health_endpoint.py::test_TRC_104_health_endpoint
+2026-10-24T08:51:33.544727+00:00 | TRC-104 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:51:33.946412+00:00 | TRC-104 | WORKING -> COMPLETED | Completed: Health endpoint /healthz verified
+2026-10-24T08:51:41.131794+00:00 | TRC-106 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:51:41.244323+00:00 | TRC-106 | WORKING -> COMPLETED | Completed: Prometheus metrics endpoint /metrics verified
+2026-10-24T08:51:48.043962+00:00 | TRC-115 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:51:48.123960+00:00 | TRC-115 | WORKING -> COMPLETED | Completed: Hierarchical recursive span tree component and view mode
+2026-10-24T08:51:54.163252+00:00 | TRC-139 | NOT_DONE -> WORKING | Started feature
+2026-10-24T08:52:10.535645+00:00 | TRC-139 | WORKING -> COMPLETED | Completed: Latency anomaly detection with rolling median and MAD modified z-scores
+2026-10-24T09:01:10.525250+00:00 | TRC-029 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:10.621900+00:00 | TRC-029 | WORKING -> COMPLETED | Completed: TraceRecord model with RLS tenant isolation and duration metrics
+2026-10-24T09:01:10.691170+00:00 | TRC-030 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:10.843609+00:00 | TRC-030 | WORKING -> COMPLETED | Completed: SpanRecord model with JSONB attributes, events, and links
+2026-10-24T09:01:11.332278+00:00 | TRC-031 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:11.429802+00:00 | TRC-031 | WORKING -> COMPLETED | Completed: B-tree primary key index on traces(tenant_id, trace_id)
+2026-10-24T09:01:11.502528+00:00 | TRC-032 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:11.574026+00:00 | TRC-032 | WORKING -> COMPLETED | Completed: B-tree primary key index on spans(tenant_id, trace_id, span_id)
+2026-10-24T09:01:11.675887+00:00 | TRC-033 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:11.761219+00:00 | TRC-033 | WORKING -> COMPLETED | Completed: Hierarchical trace-to-child-spans query mapping
+2026-10-24T09:01:11.830472+00:00 | TRC-034 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:11.895045+00:00 | TRC-034 | WORKING -> COMPLETED | Completed: B-tree index on spans(tenant_id, service_name)
+2026-10-24T09:01:11.958814+00:00 | TRC-035 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:12.024728+00:00 | TRC-035 | WORKING -> COMPLETED | Completed: B-tree index on spans(tenant_id, name)
+2026-10-24T09:01:12.088807+00:00 | TRC-036 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:12.156554+00:00 | TRC-036 | WORKING -> COMPLETED | Completed: B-tree index on spans(tenant_id, start_time_unix_nano)
+2026-10-24T09:01:12.220434+00:00 | TRC-037 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:12.284496+00:00 | TRC-037 | WORKING -> COMPLETED | Completed: PostgreSQL GIN index on spans(attributes)
+2026-10-24T09:01:12.350028+00:00 | TRC-038 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:12.414346+00:00 | TRC-038 | WORKING -> COMPLETED | Completed: GIN containment and key-exists operators for tag filtering
+2026-10-24T09:01:12.487864+00:00 | TRC-039 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:12.567232+00:00 | TRC-039 | WORKING -> COMPLETED | Completed: RetentionPolicy configuration and storage telemetry metadata
+2026-10-24T09:01:12.637135+00:00 | TRC-040 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:12.701379+00:00 | TRC-040 | WORKING -> COMPLETED | Completed: Time-partition range verification and manager
+2026-10-24T09:01:12.766779+00:00 | TRC-041 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:12.830620+00:00 | TRC-041 | WORKING -> COMPLETED | Completed: Compaction job preserving trace summaries while reclaiming span space
+2026-10-24T09:01:12.896099+00:00 | TRC-042 | NOT_DONE -> WORKING | Started feature
+2026-10-24T09:01:12.960147+00:00 | TRC-042 | WORKING -> COMPLETED | Completed: Automated TTL expiration deleting expired spans and traces past cutoff

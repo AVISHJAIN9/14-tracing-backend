@@ -1,0 +1,151 @@
+id,feature,layers,priority,area
+TRC-001,Trace context model,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-002,Trace ID generation,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-003,Span ID generation,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-004,Parent-child spans,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-005,Span lifecycle,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-006,Span start timestamp,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-007,Span end timestamp,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-008,Span duration,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-009,Span status,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-010,Span attributes,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-011,Span events,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-012,Span links,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-013,Trace flags,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-014,Trace state,BE,P0,Area 1/11 — Tracing Core & Span Model
+TRC-015,W3C Trace Context,BE,P0,Area 2/11 — Propagation & Context
+TRC-016,traceparent parsing,BE,P0,Area 2/11 — Propagation & Context
+TRC-017,tracestate parsing,BE,P0,Area 2/11 — Propagation & Context
+TRC-018,Baggage propagation,BE,P0,Area 2/11 — Propagation & Context
+TRC-019,HTTP header propagation,BE,P0,Area 2/11 — Propagation & Context
+TRC-020,gRPC metadata propagation,BE,P0,Area 2/11 — Propagation & Context
+TRC-021,WebSocket context propagation,BE,P0,Area 2/11 — Propagation & Context
+TRC-022,Async context propagation,BE,P0,Area 2/11 — Propagation & Context
+TRC-023,Thread context propagation,BE,P0,Area 2/11 — Propagation & Context
+TRC-024,Context extraction,BE,P0,Area 2/11 — Propagation & Context
+TRC-025,Context injection,BE,P0,Area 2/11 — Propagation & Context
+TRC-026,Invalid context handling,BE,P0,Area 2/11 — Propagation & Context
+TRC-027,Missing parent handling,BE,P0,Area 2/11 — Propagation & Context
+TRC-028,Cross-service propagation,BE,P0,Area 2/11 — Propagation & Context
+TRC-029,Trace storage,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-030,Span storage,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-031,Trace index,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-032,Span index,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-033,Trace-to-span mapping,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-034,Service index,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-035,Operation index,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-036,Timestamp index,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-037,Attribute index,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-038,Tag filtering index,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-039,Retention metadata,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-040,Partitioning,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-041,Compaction,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-042,TTL expiration,BE+DB,P0,Area 3/11 — Storage & Data Model
+TRC-043,Tenant isolation,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-044,Tenant-scoped trace IDs,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-045,API-key authentication,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-046,OAuth/OIDC integration,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-047,JWT validation,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-048,mTLS support,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-049,Role-based access,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-050,Trace-level authorization,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-051,Sensitive attribute redaction,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-052,PII filtering,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-053,Header redaction,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-054,Payload size limits,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-055,Query rate limiting,BE+DB,P0,Area 4/11 — Security & Multi-Tenancy
+TRC-056,OTLP ingestion,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-057,OTLP/gRPC receiver,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-058,OTLP/HTTP receiver,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-059,Batch span ingestion,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-060,Streaming ingestion,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-061,Payload validation,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-062,Schema validation,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-063,Malformed span handling,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-064,Backpressure,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-065,Queue buffering,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-066,Batch processing,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-067,Ingestion retries,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-068,Partial failure handling,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-069,Duplicate span handling,BE+DB,P0,Area 5/11 — Collector & Ingestion
+TRC-070,Trace lookup by ID,BE,P0,Area 6/11 — Query & Trace Search
+TRC-071,Trace search,BE,P0,Area 6/11 — Query & Trace Search
+TRC-072,Service filter,BE,P0,Area 6/11 — Query & Trace Search
+TRC-073,Operation filter,BE,P0,Area 6/11 — Query & Trace Search
+TRC-074,Duration filter,BE,P0,Area 6/11 — Query & Trace Search
+TRC-075,Status filter,BE,P0,Area 6/11 — Query & Trace Search
+TRC-076,Time-range filter,BE,P0,Area 6/11 — Query & Trace Search
+TRC-077,Attribute filter,BE,P0,Area 6/11 — Query & Trace Search
+TRC-078,Tag search,BE,P0,Area 6/11 — Query & Trace Search
+TRC-079,Trace pagination,BE,P0,Area 6/11 — Query & Trace Search
+TRC-080,Cursor pagination,BE,P0,Area 6/11 — Query & Trace Search
+TRC-081,Sorting,BE,P0,Area 6/11 — Query & Trace Search
+TRC-082,Full-text search,BE,P0,Area 6/11 — Query & Trace Search
+TRC-083,Trace aggregation,BE,P0,Area 6/11 — Query & Trace Search
+TRC-084,Head sampling,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-085,Probability sampling,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-086,Rate-based sampling,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-087,Parent-based sampling,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-088,Trace-ID sampling,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-089,Sampling policies,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-090,Per-service sampling,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-091,Per-route sampling,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-092,Error-aware sampling,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-093,Latency-aware sampling,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-094,Tail sampling,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-095,Tail-sampling buffer,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-096,Tail-sampling decision window,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-097,Priority sampling,BE,P0,Area 7/11 — Sampling & Tail Analysis
+TRC-098,Trace API,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-099,Search API,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-100,Service API,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-101,Dependency API,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-102,Sampling API,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-103,Ingestion API,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-104,Health endpoint,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-105,Readiness endpoint,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-106,Metrics endpoint,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-107,Admin API,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-108,Configuration API,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-109,Tenant API,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-110,Authentication middleware,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-111,Authorization middleware,BE,P0,Area 8/11 — Backend APIs & Services
+TRC-112,Trace explorer,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-113,Trace detail page,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-114,Waterfall timeline,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-115,Span tree,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-116,Service map,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-117,Dependency graph,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-118,Latency charts,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-119,Error-rate charts,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-120,Span attribute viewer,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-121,Span event viewer,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-122,Trace tags viewer,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-123,Trace links viewer,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-124,Critical-path highlight,FE+BE,P1,Area 9/11 — Frontend / Observability UI
+TRC-125,High-throughput ingestion,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-126,Concurrent ingestion,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-127,Large-trace testing,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-128,High-cardinality testing,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-129,Storage load testing,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-130,Query load testing,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-131,Latency benchmarking,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-132,Memory profiling,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-133,CPU profiling,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-134,Queue saturation testing,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-135,Backpressure testing,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-136,Collector failover,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-137,Storage failover,BE,P0,Area 10/11 — Reliability, Performance & Deployment
+TRC-138,Trace anomaly detection,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing
+TRC-139,Latency anomaly detection,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing
+TRC-140,Error-spike detection,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing
+TRC-141,Root-cause candidate ranking,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing
+TRC-142,Trace summarization,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing
+TRC-143,Incident summarization,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing
+TRC-144,Natural-language trace queries,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing
+TRC-145,Semantic trace search,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing
+TRC-146,Service dependency anomaly detection,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing
+TRC-147,Performance regression detection,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing
+TRC-148,Slow-span prediction,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing
+TRC-149,Sampling recommendation,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing
+TRC-150,Dynamic sampling optimization,FE+BE+ML,P2,Area 11/11 — AI/ML & Intelligent Tracing

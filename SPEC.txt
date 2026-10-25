@@ -1,0 +1,35 @@
+### P14 TRACING BACKEND — a distributed tracing ingest, search, sampling, and analytics backend.
+
+Mission:
+High-throughput OpenTelemetry distributed tracing backend providing real-time span ingestion, context propagation, multi-tenant search, intelligent sampling, and trace analytics.
+
+Architecture:
+- OTLP Ingestion: HTTP/Protobuf and gRPC OTLP receiver endpoints.
+- Storage: Partitioned columnar span and attribute storage backed by PostgreSQL/SQLite with secondary indexes.
+- Sampling Engine: Deterministic head sampling, rate limiting, and priority tail sampling.
+- Observability UI: Trace detail view, waterfall chart, span viewer, and service dependency graph.
+
+Hard Invariants:
+- Deterministic trace sampling: Same trace_id + rate yields deterministic sampling decision across all collector replicas.
+- Rate-based sampling never exceeds configured spans/sec over any 1-second window.
+- Tenant isolation enforced at API and database query level.
+- Priority-sampled traces are never dropped before non-priority ones.
+- Decisions, errors, and traces audited truthfully with zero stubs.
+
+Phase 2 Invariants & Scenarios:
+- Head sampling decisions are deterministic per trace_id (same trace_id + same rate -> same decision on every collector replica);
+- Rate-based sampling never exceeds the configured spans/sec over any 1-second window (injected clock);
+- Per-service/per-route policy precedence is documented and tested;
+- Priority-sampled traces are never dropped before non-priority ones;
+- Authorization denies by default and a tenant admin cannot read another tenant's data via any new API (app AND RLS);
+- Span attribute/event/link viewers show exactly what is stored, with redaction applied;
+- ML: error-spike CUSUM/Poisson test has a measured false-positive rate on quiet baseline traffic;
+- Regression test reports effect size + p-value (Mann–Whitney U or bootstrap);
+- Sampling recommendation/dynamic controller never drops error/slow traces below the configured floor and logs every change to an audit log.
+
+Scenarios:
+- S14-02: one request crosses >=3 services over HTTP/gRPC/WebSocket with correct parent/child links and correct service-map edges.
+- S14-04: batch mixing valid and malformed spans returns OTLP partial success.
+- S14-10: kill a collector replica and restart Postgres under load: no acknowledged batch lost, loss bound measured.
+- S14-11: measured p50/p95/p99 for trace-by-ID and search under load, ingest spans/sec, memory and CPU profiles saved (only measured numbers).
+- S14-12 extended: precision/recall for the new detectors on injected anomalies.

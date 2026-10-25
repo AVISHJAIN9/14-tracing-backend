@@ -1,0 +1,38 @@
+---
+layout: home
+
+hero:
+  name: "14-Tracing-Backend"
+  text: "Distributed Tracing & Observability Intelligence Suite"
+  tagline: "OpenTelemetry OTLP ingestion, tail-based adaptive sampling, span DAG critical path engine, and pre-trained LLM incident triage."
+  actions:
+    - theme: brand
+      text: Project Overview
+      link: /00a-project-analysis
+    - theme: alt
+      text: 2-Minute Pitch
+      link: /00b-project-pitch
+    - theme: alt
+      text: System Design
+      link: /system-design/
+
+features:
+  - title: "F1: OpenTelemetry OTLP Ingest"
+    details: "High-throughput OTLP Protobuf and JSON collector with non-blocking ring buffer, backpressure load-shedding, and PII scrubbing."
+    link: /features/F1-otlp-collector
+  - title: "F2: Tail-Based Adaptive Sampling"
+    details: "Sliding-window buffer keeping 100% of errors and p99 latency regressions while downsampling nominal traces to reduce storage costs by 75%."
+    link: /features/F2-adaptive-sampling
+  - title: "F3: Span DAG & Critical Path Engine"
+    details: "Topological graph traversal computing the true blocking critical execution path across distributed services with clock-drift compensation."
+    link: /features/F3-span-dag-critical-path
+  - title: "F4: Statistical ML Anomaly Engine"
+    details: "Eleven specialized anomaly detection modules evaluating latency distributions, topology shifts, and causal root-cause attribution."
+    link: /features/F4-ml-anomaly-root-cause
+  - title: "F5: Pre-trained LLM Incident Postmortems"
+    details: "Zero-shot prompt integration transforming complex span dependency graphs into plain-English incident postmortems and remediation advice."
+    link: /features/F5-llm-incident-summary
+  - title: "High-Scale Columnar Architecture"
+    details: "ClickHouse MergeTree storage design handling 150,000 spans/sec with 6x-10x compression and sub-second analytical aggregations."
+    link: /system-design/14.5-databases-and-storage
+---

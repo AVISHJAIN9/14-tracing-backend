@@ -1,0 +1,42 @@
+id,feature,layers,priority,area,rank
+TRC-078,Tag search,BE,P0,Area Query & Trace Search,r12
+TRC-079,Trace pagination,BE,P0,Area Query & Trace Search,r13
+TRC-082,Full-text search,BE,P0,Area Query & Trace Search,r14
+TRC-083,Trace aggregation,BE,P0,Area Query & Trace Search,r15
+TRC-084,Head sampling,BE,P0,Area Sampling & Tail Analysis,r7
+TRC-086,Rate-based sampling,BE,P0,Area Sampling & Tail Analysis,r8
+TRC-090,Per-service sampling,BE,P0,Area Sampling & Tail Analysis,r9
+TRC-091,Per-route sampling,BE,P0,Area Sampling & Tail Analysis,r10
+TRC-097,Priority sampling,BE,P0,Area Sampling & Tail Analysis,r11
+TRC-102,Sampling API,BE,P0,Area Backend APIs & Services,r1
+TRC-107,Admin API,BE,P0,Area Backend APIs & Services,r23
+TRC-108,Configuration API,BE,P0,Area Backend APIs & Services,r24
+TRC-109,Tenant API,BE,P0,Area Backend APIs & Services,r3
+TRC-111,Authorization middleware,BE,P0,Area Backend APIs & Services,r2
+TRC-117,Dependency graph,FE+BE,P1,Area Frontend / Observability UI,r25
+TRC-118,Latency charts,FE+BE,P1,Area Frontend / Observability UI,r26
+TRC-119,Error-rate charts,FE+BE,P1,Area Frontend / Observability UI,r27
+TRC-120,Span attribute viewer,FE+BE,P1,Area Frontend / Observability UI,r28
+TRC-121,Span event viewer,FE+BE,P1,Area Frontend / Observability UI,r29
+TRC-122,Trace tags viewer,FE+BE,P1,Area Frontend / Observability UI,r30
+TRC-123,Trace links viewer,FE+BE,P1,Area Frontend / Observability UI,r31
+TRC-126,Concurrent ingestion,BE,P0,Area Reliability, Performance & Deployment,r6
+TRC-127,Large-trace testing,BE,P0,Area Reliability, Performance & Deployment,r16
+TRC-128,High-cardinality testing,BE,P0,Area Reliability, Performance & Deployment,r17
+TRC-129,Storage load testing,BE,P0,Area Reliability, Performance & Deployment,r18
+TRC-130,Query load testing,BE,P0,Area Reliability, Performance & Deployment,r19
+TRC-131,Latency benchmarking,BE,P0,Area Reliability, Performance & Deployment,r20
+TRC-132,Memory profiling,BE,P0,Area Reliability, Performance & Deployment,r21
+TRC-133,CPU profiling,BE,P0,Area Reliability, Performance & Deployment,r22
+TRC-136,Collector failover,BE,P0,Area Reliability, Performance & Deployment,r4
+TRC-137,Storage failover,BE,P0,Area Reliability, Performance & Deployment,r5
+TRC-140,Error-spike detection,FE+BE+ML,P2,Area AI/ML & Intelligent Tracing,r32
+TRC-142,Trace summarization,FE+BE+ML,P2,Area AI/ML & Intelligent Tracing,r39
+TRC-143,Incident summarization,FE+BE+ML,P2,Area AI/ML & Intelligent Tracing,r40
+TRC-144,Natural-language trace queries,FE+BE+ML,P2,Area AI/ML & Intelligent Tracing,r41
+TRC-145,Semantic trace search,FE+BE+ML,P2,Area AI/ML & Intelligent Tracing,r37
+TRC-146,Service dependency anomaly detection,FE+BE+ML,P2,Area AI/ML & Intelligent Tracing,r33
+TRC-147,Performance regression detection,FE+BE+ML,P2,Area AI/ML & Intelligent Tracing,r34
+TRC-148,Slow-span prediction,FE+BE+ML,P2,Area AI/ML & Intelligent Tracing,r38
+TRC-149,Sampling recommendation,FE+BE+ML,P2,Area AI/ML & Intelligent Tracing,r35
+TRC-150,Dynamic sampling optimization,FE+BE+ML,P2,Area AI/ML & Intelligent Tracing,r36

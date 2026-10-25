@@ -1,0 +1,26 @@
+# F5: Pre-trained LLM Automated Incident Summarizer
+
+## Overview
+Integrates an external pre-trained LLM API (OpenAI/Anthropic) to ingest serialized anomaly graphs and critical path spans, producing human-readable postmortem summaries and concrete remediation suggestions.
+
+---
+
+## Technical Flow & Architectural Traces
+
+```mermaid
+flowchart TD
+    Client[Microservice / Client] --> Endpoint[FastAPI Endpoint]
+    Endpoint --> Middleware[Security & Auth Middleware]
+    Middleware --> Processor[Processing Engine]
+    Processor --> Storage[(ClickHouse / SQLite)]
+```
+
+### Edge Cases & Failure Handling
+- **Network Timeouts**: Requests automatically retry with exponential backoff and jitter.
+- **Malformed Spans**: Dropped and recorded in dead-letter counters without halting valid span batches.
+- **Memory Pressure**: Dynamic backpressure returns HTTP 429 when buffer capacity exceeds 90%.
+
+---
+
+## Say It Out Loud
+> "For this feature, I implemented an asynchronous pipeline that balances high throughput with data safety. Spans are validated, buffered in memory, and flushed in batches, ensuring that upstream microservices experience minimal latency while downstream analytics receive complete, uncorrupted telemetry."

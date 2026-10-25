@@ -1,0 +1,3534 @@
+{
+  "project": "14-tracing-backend",
+  "initialized_at": "2026-10-24T02:45:44.394503+00:00",
+  "total_features": 150,
+  "layer_counts": {
+    "FE": 26,
+    "BE": 150,
+    "DB": 41,
+    "ML": 13
+  },
+  "features": {
+    "TRC-001": {
+      "id": "TRC-001",
+      "feature": "Trace context model",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T02:46:57.930879+00:00",
+      "completed_at": "2026-10-24T02:49:08.823361+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_context_model.py::test_trace_context_valid_creation",
+        "backend/tests/test_context_model.py::test_trace_context_rejects_invalid_trace_id_length",
+        "backend/tests/test_context_model.py::test_trace_context_rejects_all_zero_trace_id",
+        "backend/tests/test_context_model.py::test_trace_context_rejects_invalid_span_id_length",
+        "backend/tests/test_context_model.py::test_trace_context_rejects_all_zero_span_id",
+        "backend/tests/test_context_model.py::test_trace_context_normalizes_to_lowercase",
+        "backend/tests/test_context_model.py::test_trace_context_flags_boundaries",
+        "backend/tests/test_context_model.py::test_trace_context_immutability"
+      ],
+      "files": [
+        "backend/src/tracelib/core/context.py",
+        "backend/src/tracelib/core/__init__.py",
+        "backend/src/tracelib/__init__.py"
+      ],
+      "evidence": "docs/evidence/TRC-001.md",
+      "notes": "W3C compliant immutable TraceContext model with validation and flags"
+    },
+    "TRC-002": {
+      "id": "TRC-002",
+      "feature": "Trace ID generation",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T02:49:34.122296+00:00",
+      "completed_at": "2026-10-24T02:51:22.846862+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_id_generation.py::test_generate_trace_id_format",
+        "backend/tests/test_id_generation.py::test_generate_trace_id_uniqueness",
+        "backend/tests/test_id_generation.py::test_generate_trace_id_uses_csprng"
+      ],
+      "files": [
+        "backend/src/tracelib/core/ids.py",
+        "backend/src/tracelib/core/__init__.py",
+        "backend/src/tracelib/__init__.py"
+      ],
+      "evidence": "docs/evidence/TRC-002.md",
+      "notes": "CSPRNG 16-byte random trace ID generator with zero-rejection invariant"
+    },
+    "TRC-003": {
+      "id": "TRC-003",
+      "feature": "Span ID generation",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T02:51:47.950791+00:00",
+      "completed_at": "2026-10-24T02:53:46.678939+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_id_generation.py::test_generate_span_id_format",
+        "backend/tests/test_id_generation.py::test_generate_span_id_uniqueness",
+        "backend/tests/test_id_generation.py::test_generate_span_id_uses_csprng"
+      ],
+      "files": [
+        "backend/src/tracelib/core/ids.py",
+        "backend/src/tracelib/core/__init__.py",
+        "backend/src/tracelib/__init__.py"
+      ],
+      "evidence": "docs/evidence/TRC-003.md",
+      "notes": "CSPRNG 8-byte random span ID generator with non-zero invariant"
+    },
+    "TRC-004": {
+      "id": "TRC-004",
+      "feature": "Parent-child spans",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T02:54:14.336802+00:00",
+      "completed_at": "2026-10-24T02:55:47.809875+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_span_model.py::test_root_span_creation",
+        "backend/tests/test_span_model.py::test_child_span_creation_from_parent",
+        "backend/tests/test_span_model.py::test_grandchild_hierarchy",
+        "backend/tests/test_span_model.py::test_reject_invalid_parent_span_id"
+      ],
+      "files": [
+        "backend/src/tracelib/core/span.py",
+        "backend/src/tracelib/core/__init__.py",
+        "backend/src/tracelib/__init__.py"
+      ],
+      "evidence": "docs/evidence/TRC-004.md",
+      "notes": "Span parent-child hierarchy with context inheritance and parent_span_id validation"
+    },
+    "TRC-005": {
+      "id": "TRC-005",
+      "feature": "Span lifecycle",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T02:57:35.651905+00:00",
+      "completed_at": "2026-10-24T02:59:37.705062+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_span_lifecycle.py::test_span_lifecycle_states",
+        "backend/tests/test_span_lifecycle.py::test_span_context_manager",
+        "backend/tests/test_span_lifecycle.py::test_span_multiple_ends_idempotent"
+      ],
+      "files": [
+        "backend/src/tracelib/core/span.py"
+      ],
+      "evidence": "docs/evidence/TRC-005.md",
+      "notes": "Span lifecycle states with start/end timestamps and context manager support"
+    },
+    "TRC-006": {
+      "id": "TRC-006",
+      "feature": "Span start timestamp",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:00:07.613345+00:00",
+      "completed_at": "2026-10-24T03:01:43.283837+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_span_start_timestamp.py::test_span_start_timestamp_automatic",
+        "backend/tests/test_span_start_timestamp.py::test_span_start_timestamp_explicit",
+        "backend/tests/test_span_start_timestamp.py::test_span_start_timestamp_invalid"
+      ],
+      "files": [
+        "backend/src/tracelib/core/span.py"
+      ],
+      "evidence": "docs/evidence/TRC-006.md",
+      "notes": "Nanosecond resolution span start timestamp with validation and explicit injection support"
+    },
+    "TRC-007": {
+      "id": "TRC-007",
+      "feature": "Span end timestamp",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:02:12.480400+00:00",
+      "completed_at": "2026-10-24T03:03:35.063920+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_span_end_timestamp.py::test_span_end_timestamp_before_end",
+        "backend/tests/test_span_end_timestamp.py::test_span_end_timestamp_automatic",
+        "backend/tests/test_span_end_timestamp.py::test_span_end_timestamp_explicit",
+        "backend/tests/test_span_end_timestamp.py::test_span_end_timestamp_rejects_earlier_than_start",
+        "backend/tests/test_span_end_timestamp.py::test_span_end_timestamp_type_check"
+      ],
+      "files": [
+        "backend/src/tracelib/core/span.py"
+      ],
+      "evidence": "docs/evidence/TRC-007.md",
+      "notes": "Nanosecond span end timestamp with end >= start validation and type checks"
+    },
+    "TRC-008": {
+      "id": "TRC-008",
+      "feature": "Span duration",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:04:05.614570+00:00",
+      "completed_at": "2026-10-24T03:05:42.914401+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_span_duration.py::test_span_duration_active_span",
+        "backend/tests/test_span_duration.py::test_span_duration_ended_span",
+        "backend/tests/test_span_duration.py::test_span_duration_zero_duration",
+        "backend/tests/test_span_duration.py::test_span_duration_nanosecond_precision"
+      ],
+      "files": [
+        "backend/src/tracelib/core/span.py"
+      ],
+      "evidence": "docs/evidence/TRC-008.md",
+      "notes": "Nanosecond derived span duration with ms conversion and active state handling"
+    },
+    "TRC-009": {
+      "id": "TRC-009",
+      "feature": "Span status",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:06:14.503773+00:00",
+      "completed_at": "2026-10-24T03:08:17.017252+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_span_status.py::test_span_default_status",
+        "backend/tests/test_span_status.py::test_span_set_status_ok",
+        "backend/tests/test_span_status.py::test_span_set_status_error",
+        "backend/tests/test_span_status.py::test_span_status_immutable_after_end"
+      ],
+      "files": [
+        "backend/src/tracelib/core/span.py",
+        "backend/src/tracelib/core/__init__.py",
+        "backend/src/tracelib/__init__.py"
+      ],
+      "evidence": "docs/evidence/TRC-009.md",
+      "notes": "OTel StatusCode and Status model with post-end immutability enforcement"
+    },
+    "TRC-010": {
+      "id": "TRC-010",
+      "feature": "Span attributes",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:08:55.773325+00:00",
+      "completed_at": "2026-10-24T03:10:44.352027+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_span_attributes.py::test_span_attributes_initial",
+        "backend/tests/test_span_attributes.py::test_span_set_attribute_primitives",
+        "backend/tests/test_span_attributes.py::test_span_set_attributes_batch",
+        "backend/tests/test_span_attributes.py::test_span_attributes_invalid_keys",
+        "backend/tests/test_span_attributes.py::test_span_attributes_invalid_value_type",
+        "backend/tests/test_span_attributes.py::test_span_attributes_immutable_after_end"
+      ],
+      "files": [
+        "backend/src/tracelib/core/span.py"
+      ],
+      "evidence": "docs/evidence/TRC-010.md",
+      "notes": "Span attributes model with type validation and post-end write protection"
+    },
+    "TRC-011": {
+      "id": "TRC-011",
+      "feature": "Span events",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:11:16.951478+00:00",
+      "completed_at": "2026-10-24T03:13:52.353396+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_span_events.py::test_span_add_event_automatic_timestamp",
+        "backend/tests/test_span_events.py::test_span_add_event_explicit_timestamp",
+        "backend/tests/test_span_events.py::test_span_add_event_invalid_name",
+        "backend/tests/test_span_events.py::test_span_record_exception",
+        "backend/tests/test_span_events.py::test_span_add_event_immutable_after_end"
+      ],
+      "files": [
+        "backend/src/tracelib/core/events.py",
+        "backend/src/tracelib/core/span.py",
+        "backend/src/tracelib/core/__init__.py",
+        "backend/src/tracelib/__init__.py"
+      ],
+      "evidence": "docs/evidence/TRC-011.md",
+      "notes": "SpanEvent model with timestamped annotations and exception recording"
+    },
+    "TRC-012": {
+      "id": "TRC-012",
+      "feature": "Span links",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:14:32.169151+00:00",
+      "completed_at": "2026-10-24T03:17:00.173696+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_span_links.py::test_span_links_initial",
+        "backend/tests/test_span_links.py::test_span_add_link",
+        "backend/tests/test_span_links.py::test_span_add_link_invalid_context",
+        "backend/tests/test_span_links.py::test_span_add_link_immutable_after_end"
+      ],
+      "files": [
+        "backend/src/tracelib/core/links.py",
+        "backend/src/tracelib/core/span.py",
+        "backend/src/tracelib/core/__init__.py",
+        "backend/src/tracelib/__init__.py"
+      ],
+      "evidence": "docs/evidence/TRC-012.md",
+      "notes": "SpanLink model for causal/batch span relationships with validation and post-end protection"
+    },
+    "TRC-013": {
+      "id": "TRC-013",
+      "feature": "Trace flags",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:17:32.894276+00:00",
+      "completed_at": "2026-10-24T03:19:53.149868+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_trace_flags.py::test_trace_flags_constants",
+        "backend/tests/test_trace_flags.py::test_format_trace_flags",
+        "backend/tests/test_trace_flags.py::test_parse_trace_flags_valid",
+        "backend/tests/test_trace_flags.py::test_parse_trace_flags_invalid",
+        "backend/tests/test_trace_flags.py::test_format_trace_flags_invalid"
+      ],
+      "files": [
+        "backend/src/tracelib/core/context.py",
+        "backend/src/tracelib/core/__init__.py",
+        "backend/src/tracelib/__init__.py"
+      ],
+      "evidence": "docs/evidence/TRC-013.md",
+      "notes": "TraceFlags IntFlag and 2-hex character parser and formatter adhering to W3C spec"
+    },
+    "TRC-014": {
+      "id": "TRC-014",
+      "feature": "Trace state",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 1/11 \u2014 Tracing Core & Span Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:20:26.554774+00:00",
+      "completed_at": "2026-10-24T03:23:12.913849+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_trace_state.py::test_tracestate_empty",
+        "backend/tests/test_trace_state.py::test_tracestate_from_header",
+        "backend/tests/test_trace_state.py::test_tracestate_mutation_order_preserved",
+        "backend/tests/test_trace_state.py::test_tracestate_delete",
+        "backend/tests/test_trace_state.py::test_tracestate_max_32_members",
+        "backend/tests/test_trace_state.py::test_tracestate_invalid_keys",
+        "backend/tests/test_trace_state.py::test_tracestate_invalid_values"
+      ],
+      "files": [
+        "backend/src/tracelib/core/state.py",
+        "backend/src/tracelib/core/__init__.py",
+        "backend/src/tracelib/__init__.py"
+      ],
+      "evidence": "docs/evidence/TRC-014.md",
+      "notes": "W3C TraceState model with 32 member cap, prepend mutation rules, and grammar validation"
+    },
+    "TRC-015": {
+      "id": "TRC-015",
+      "feature": "W3C Trace Context",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:28:32.154750+00:00",
+      "completed_at": "2026-10-24T03:31:03.611319+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_w3c_trace_context.py::test_w3c_trace_context_roundtrip",
+        "backend/tests/test_w3c_trace_context.py::test_w3c_trace_context_no_tracestate",
+        "backend/tests/test_w3c_trace_context.py::test_w3c_trace_context_case_insensitive_header_keys",
+        "backend/tests/test_w3c_trace_context.py::test_w3c_trace_context_missing_traceparent",
+        "backend/tests/test_w3c_trace_context.py::test_w3c_trace_context_empty_carrier"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/w3c.py",
+        "backend/tests/test_w3c_trace_context.py"
+      ],
+      "evidence": "docs/evidence/TRC-015.md",
+      "notes": "W3C Trace Context propagator with roundtrip inject and extract"
+    },
+    "TRC-016": {
+      "id": "TRC-016",
+      "feature": "traceparent parsing",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:31:17.345385+00:00",
+      "completed_at": "2026-10-24T03:32:55.930188+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_traceparent_parsing.py::test_traceparent_valid_version_00",
+        "backend/tests/test_traceparent_parsing.py::test_traceparent_all_zero_trace_id_invalid",
+        "backend/tests/test_traceparent_parsing.py::test_traceparent_all_zero_parent_id_invalid",
+        "backend/tests/test_traceparent_parsing.py::test_traceparent_version_ff_invalid",
+        "backend/tests/test_traceparent_parsing.py::test_traceparent_version_00_extra_fields_invalid",
+        "backend/tests/test_traceparent_parsing.py::test_traceparent_future_version_supported",
+        "backend/tests/test_traceparent_parsing.py::test_traceparent_invalid_lengths_and_chars",
+        "backend/tests/test_traceparent_parsing.py::test_traceparent_case_normalization"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/traceparent.py",
+        "backend/tests/test_traceparent_parsing.py"
+      ],
+      "evidence": "docs/evidence/TRC-016.md",
+      "notes": "Full W3C traceparent header parsing with version, zero, and character validations"
+    },
+    "TRC-017": {
+      "id": "TRC-017",
+      "feature": "tracestate parsing",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:33:06.602889+00:00",
+      "completed_at": "2026-10-24T03:34:59.821388+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_tracestate_parsing.py::test_parse_tracestate_single_header",
+        "backend/tests/test_tracestate_parsing.py::test_parse_tracestate_multiple_headers",
+        "backend/tests/test_tracestate_parsing.py::test_parse_tracestate_whitespace_handling",
+        "backend/tests/test_tracestate_parsing.py::test_parse_tracestate_skips_malformed_members",
+        "backend/tests/test_tracestate_parsing.py::test_parse_tracestate_deduplicates_keeping_first",
+        "backend/tests/test_tracestate_parsing.py::test_parse_tracestate_truncates_at_32",
+        "backend/tests/test_tracestate_parsing.py::test_parse_tracestate_tenant_keys",
+        "backend/tests/test_tracestate_parsing.py::test_parse_tracestate_empty_or_invalid_types"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/tracestate.py",
+        "backend/tests/test_tracestate_parsing.py"
+      ],
+      "evidence": "docs/evidence/TRC-017.md",
+      "notes": "W3C tracestate parser supporting single and multi-line headers, tolerant member parsing, and 32-member cap"
+    },
+    "TRC-018": {
+      "id": "TRC-018",
+      "feature": "Baggage propagation",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:35:17.149095+00:00",
+      "completed_at": "2026-10-24T03:37:05.647585+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_baggage_propagation.py::test_baggage_model_basic",
+        "backend/tests/test_baggage_propagation.py::test_baggage_with_properties",
+        "backend/tests/test_baggage_propagation.py::test_baggage_to_header_and_from_header_roundtrip",
+        "backend/tests/test_baggage_propagation.py::test_baggage_propagator_inject_and_extract",
+        "backend/tests/test_baggage_propagation.py::test_baggage_case_insensitive_header",
+        "backend/tests/test_baggage_propagation.py::test_baggage_delete",
+        "backend/tests/test_baggage_propagation.py::test_baggage_invalid_keys_and_values"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/baggage.py",
+        "backend/tests/test_baggage_propagation.py"
+      ],
+      "evidence": "docs/evidence/TRC-018.md",
+      "notes": "W3C Baggage model, immutable manipulation, serialization, and header propagator"
+    },
+    "TRC-019": {
+      "id": "TRC-019",
+      "feature": "HTTP header propagation",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:37:17.126206+00:00",
+      "completed_at": "2026-10-24T03:39:16.273860+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_http_propagation.py::test_http_propagation_dict_carrier",
+        "backend/tests/test_http_propagation.py::test_http_propagation_asgi_headers",
+        "backend/tests/test_http_propagation.py::test_http_propagation_case_insensitivity",
+        "backend/tests/test_http_propagation.py::test_http_propagation_missing_or_empty_headers",
+        "backend/tests/test_http_propagation.py::test_http_propagation_bytes_encoding_and_decoding"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/http.py",
+        "backend/tests/test_http_propagation.py"
+      ],
+      "evidence": "docs/evidence/TRC-019.md",
+      "notes": "HTTP header context and baggage propagator supporting standard dicts and raw ASGI byte sequences"
+    },
+    "TRC-020": {
+      "id": "TRC-020",
+      "feature": "gRPC metadata propagation",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:39:28.052856+00:00",
+      "completed_at": "2026-10-24T03:41:18.151113+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_grpc_propagation.py::test_grpc_propagation_metadata_tuples",
+        "backend/tests/test_grpc_propagation.py::test_grpc_propagation_metadata_dict",
+        "backend/tests/test_grpc_propagation.py::test_grpc_propagation_case_insensitivity",
+        "backend/tests/test_grpc_propagation.py::test_grpc_propagation_binary_or_empty_metadata"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/grpc.py",
+        "backend/tests/test_grpc_propagation.py"
+      ],
+      "evidence": "docs/evidence/TRC-020.md",
+      "notes": "gRPC metadata context and baggage propagator supporting tuple sequences and dict structures"
+    },
+    "TRC-021": {
+      "id": "TRC-021",
+      "feature": "WebSocket context propagation",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:41:31.109068+00:00",
+      "completed_at": "2026-10-24T03:43:17.180767+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_websocket_propagation.py::test_websocket_handshake_propagation",
+        "backend/tests/test_websocket_propagation.py::test_websocket_json_message_envelope",
+        "backend/tests/test_websocket_propagation.py::test_websocket_custom_envelope_key",
+        "backend/tests/test_websocket_propagation.py::test_websocket_missing_envelope_graceful",
+        "backend/tests/test_websocket_propagation.py::test_websocket_malformed_envelope_graceful"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/websocket.py",
+        "backend/tests/test_websocket_propagation.py"
+      ],
+      "evidence": "docs/evidence/TRC-021.md",
+      "notes": "WebSocket handshake and JSON message frame context and baggage propagator"
+    },
+    "TRC-022": {
+      "id": "TRC-022",
+      "feature": "Async context propagation",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:43:28.528397+00:00",
+      "completed_at": "2026-10-24T03:45:11.748004+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_async_context.py::test_async_context_basic",
+        "backend/tests/test_async_context.py::test_async_context_use_span_sync",
+        "backend/tests/test_async_context.py::test_async_context_use_span_async",
+        "backend/tests/test_async_context.py::test_async_context_concurrent_tasks_isolation"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/async_context.py",
+        "backend/tests/test_async_context.py"
+      ],
+      "evidence": "docs/evidence/TRC-022.md",
+      "notes": "Asyncio contextvars propagation with Token restoration and dual sync/async context manager"
+    },
+    "TRC-023": {
+      "id": "TRC-023",
+      "feature": "Thread context propagation",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:45:24.570178+00:00",
+      "completed_at": "2026-10-24T03:47:21.396869+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_thread_context.py::test_thread_isolation_default",
+        "backend/tests/test_thread_context.py::test_wrap_callable_with_context",
+        "backend/tests/test_thread_context.py::test_context_thread_pool_executor_submit",
+        "backend/tests/test_thread_context.py::test_context_thread_pool_executor_map",
+        "backend/tests/test_thread_context.py::test_thread_mutation_does_not_leak"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/thread_context.py",
+        "backend/tests/test_thread_context.py"
+      ],
+      "evidence": "docs/evidence/TRC-023.md",
+      "notes": "Thread context propagation using copy_context, wrap_callable, and ContextThreadPoolExecutor"
+    },
+    "TRC-024": {
+      "id": "TRC-024",
+      "feature": "Context extraction",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:47:34.198136+00:00",
+      "completed_at": "2026-10-24T03:49:27.790531+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_context_extraction.py::test_context_extraction_w3c",
+        "backend/tests/test_context_extraction.py::test_context_extraction_custom_getter",
+        "backend/tests/test_context_extraction.py::test_context_extraction_b3_fallback",
+        "backend/tests/test_context_extraction.py::test_context_extraction_prefers_w3c_over_b3",
+        "backend/tests/test_context_extraction.py::test_context_extraction_empty_carrier"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/extract.py",
+        "backend/tests/test_context_extraction.py"
+      ],
+      "evidence": "docs/evidence/TRC-024.md",
+      "notes": "Generic context extractor supporting W3C TraceContext and Baggage with B3 single-header fallback"
+    },
+    "TRC-025": {
+      "id": "TRC-025",
+      "feature": "Context injection",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:49:43.563141+00:00",
+      "completed_at": "2026-10-24T03:51:48.003470+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_context_injection.py::test_context_injection_explicit_context",
+        "backend/tests/test_context_injection.py::test_context_injection_from_active_span",
+        "backend/tests/test_context_injection.py::test_context_injection_custom_setter",
+        "backend/tests/test_context_injection.py::test_context_injection_b3_format",
+        "backend/tests/test_context_injection.py::test_context_injection_skips_invalid_context"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/inject.py",
+        "backend/tests/test_context_injection.py"
+      ],
+      "evidence": "docs/evidence/TRC-025.md",
+      "notes": "Generic context injector supporting active span lookup, W3C and B3 headers, and custom carrier setters"
+    },
+    "TRC-026": {
+      "id": "TRC-026",
+      "feature": "Invalid context handling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:52:01.682255+00:00",
+      "completed_at": "2026-10-24T03:53:47.920882+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_invalid_context_handling.py::test_invalid_traceparent_all_zeros_starts_new_root",
+        "backend/tests/test_invalid_context_handling.py::test_invalid_traceparent_version_ff_starts_new_root",
+        "backend/tests/test_invalid_context_handling.py::test_invalid_traceparent_corrupted_characters_starts_new_root",
+        "backend/tests/test_invalid_context_handling.py::test_invalid_context_never_crashes_with_random_types",
+        "backend/tests/test_invalid_context_handling.py::test_invalid_context_fresh_ids_are_valid_csprng"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/fallback.py",
+        "backend/tests/test_invalid_context_handling.py"
+      ],
+      "evidence": "docs/evidence/TRC-026.md",
+      "notes": "Safe fallback starting new root trace on invalid or corrupt headers without unhandled exceptions"
+    },
+    "TRC-027": {
+      "id": "TRC-027",
+      "feature": "Missing parent handling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:54:01.872601+00:00",
+      "completed_at": "2026-10-24T03:57:04.671899+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_missing_parent_handling.py::test_missing_parent_starts_fresh_root_span",
+        "backend/tests/test_missing_parent_handling.py::test_missing_parent_with_baggage_preserves_baggage",
+        "backend/tests/test_missing_parent_handling.py::test_missing_parent_generates_unique_trace_and_span_ids",
+        "backend/tests/test_missing_parent_handling.py::test_missing_parent_handles_none_carrier",
+        "backend/tests/test_missing_parent_handling.py::test_existing_parent_creates_child_not_root"
+      ],
+      "files": [
+        "backend/src/tracelib/propagation/carrier.py",
+        "backend/src/tracelib/core/span.py",
+        "backend/tests/test_missing_parent_handling.py"
+      ],
+      "evidence": "docs/evidence/TRC-027.md",
+      "notes": "Missing parent handling starting clean root span with CSPRNG IDs and preserving baggage"
+    },
+    "TRC-028": {
+      "id": "TRC-028",
+      "feature": "Cross-service propagation",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 2/11 \u2014 Propagation & Context",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T03:57:18.743977+00:00",
+      "completed_at": "2026-10-24T03:59:10.514984+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_cross_service_propagation.py::test_cross_service_4_hop_propagation",
+        "backend/tests/test_cross_service_propagation.py::test_cross_service_trace_flags_propagation"
+      ],
+      "files": [
+        "backend/tests/test_cross_service_propagation.py",
+        "backend/src/tracelib/propagation/carrier.py"
+      ],
+      "evidence": "docs/evidence/TRC-028.md",
+      "notes": "4-service cross-transport propagation across HTTP, gRPC, and WebSocket with baggage preservation (S14-02)"
+    },
+    "TRC-029": {
+      "id": "TRC-029",
+      "feature": "Trace storage",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:10.517952+00:00",
+      "completed_at": "2026-10-24T09:01:10.603510+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_data_models.py::test_TRC_029_trace_storage"
+      ],
+      "files": [
+        "backend/src/storage/models.py",
+        "backend/src/storage/db.py"
+      ],
+      "evidence": "docs/evidence/TRC-029.md",
+      "notes": "TraceRecord model with RLS tenant isolation and duration metrics"
+    },
+    "TRC-030": {
+      "id": "TRC-030",
+      "feature": "Span storage",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:10.687228+00:00",
+      "completed_at": "2026-10-24T09:01:10.791641+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_data_models.py::test_TRC_030_span_storage"
+      ],
+      "files": [
+        "backend/src/storage/models.py",
+        "backend/src/storage/db.py"
+      ],
+      "evidence": "docs/evidence/TRC-030.md",
+      "notes": "SpanRecord model with JSONB attributes, events, and links"
+    },
+    "TRC-031": {
+      "id": "TRC-031",
+      "feature": "Trace index",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:11.325648+00:00",
+      "completed_at": "2026-10-24T09:01:11.424651+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_data_models.py::test_TRC_031_trace_index"
+      ],
+      "files": [
+        "backend/src/storage/models.py"
+      ],
+      "evidence": "docs/evidence/TRC-031.md",
+      "notes": "B-tree primary key index on traces(tenant_id, trace_id)"
+    },
+    "TRC-032": {
+      "id": "TRC-032",
+      "feature": "Span index",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:11.498397+00:00",
+      "completed_at": "2026-10-24T09:01:11.569815+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_data_models.py::test_TRC_032_span_index"
+      ],
+      "files": [
+        "backend/src/storage/models.py"
+      ],
+      "evidence": "docs/evidence/TRC-032.md",
+      "notes": "B-tree primary key index on spans(tenant_id, trace_id, span_id)"
+    },
+    "TRC-033": {
+      "id": "TRC-033",
+      "feature": "Trace-to-span mapping",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:11.671354+00:00",
+      "completed_at": "2026-10-24T09:01:11.757240+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_data_models.py::test_TRC_033_trace_to_span_mapping"
+      ],
+      "files": [
+        "backend/src/storage/models.py",
+        "backend/tests/test_storage_data_models.py"
+      ],
+      "evidence": "docs/evidence/TRC-033.md",
+      "notes": "Hierarchical trace-to-child-spans query mapping"
+    },
+    "TRC-034": {
+      "id": "TRC-034",
+      "feature": "Service index",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:11.826593+00:00",
+      "completed_at": "2026-10-24T09:01:11.891652+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_indexes.py::test_TRC_034_service_index"
+      ],
+      "files": [
+        "backend/src/storage/models.py"
+      ],
+      "evidence": "docs/evidence/TRC-034.md",
+      "notes": "B-tree index on spans(tenant_id, service_name)"
+    },
+    "TRC-035": {
+      "id": "TRC-035",
+      "feature": "Operation index",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:11.955281+00:00",
+      "completed_at": "2026-10-24T09:01:12.021098+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_indexes.py::test_TRC_035_operation_index"
+      ],
+      "files": [
+        "backend/src/storage/models.py"
+      ],
+      "evidence": "docs/evidence/TRC-035.md",
+      "notes": "B-tree index on spans(tenant_id, name)"
+    },
+    "TRC-036": {
+      "id": "TRC-036",
+      "feature": "Timestamp index",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:12.085256+00:00",
+      "completed_at": "2026-10-24T09:01:12.152163+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_indexes.py::test_TRC_036_timestamp_index"
+      ],
+      "files": [
+        "backend/src/storage/models.py"
+      ],
+      "evidence": "docs/evidence/TRC-036.md",
+      "notes": "B-tree index on spans(tenant_id, start_time_unix_nano)"
+    },
+    "TRC-037": {
+      "id": "TRC-037",
+      "feature": "Attribute index",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:12.216403+00:00",
+      "completed_at": "2026-10-24T09:01:12.280747+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_indexes.py::test_TRC_037_attribute_index"
+      ],
+      "files": [
+        "backend/src/storage/models.py"
+      ],
+      "evidence": "docs/evidence/TRC-037.md",
+      "notes": "PostgreSQL GIN index on spans(attributes)"
+    },
+    "TRC-038": {
+      "id": "TRC-038",
+      "feature": "Tag filtering index",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:12.345867+00:00",
+      "completed_at": "2026-10-24T09:01:12.410567+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_indexes.py::test_TRC_038_tag_filtering_index"
+      ],
+      "files": [
+        "backend/src/storage/models.py"
+      ],
+      "evidence": "docs/evidence/TRC-038.md",
+      "notes": "GIN containment and key-exists operators for tag filtering"
+    },
+    "TRC-039": {
+      "id": "TRC-039",
+      "feature": "Retention metadata",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:12.483834+00:00",
+      "completed_at": "2026-10-24T09:01:12.563209+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_retention_ttl.py::test_TRC_039_retention_metadata"
+      ],
+      "files": [
+        "backend/src/storage/retention.py"
+      ],
+      "evidence": "docs/evidence/TRC-039.md",
+      "notes": "RetentionPolicy configuration and storage telemetry metadata"
+    },
+    "TRC-040": {
+      "id": "TRC-040",
+      "feature": "Partitioning",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:12.633631+00:00",
+      "completed_at": "2026-10-24T09:01:12.697859+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_retention_ttl.py::test_TRC_040_partitioning"
+      ],
+      "files": [
+        "backend/src/storage/retention.py"
+      ],
+      "evidence": "docs/evidence/TRC-040.md",
+      "notes": "Time-partition range verification and manager"
+    },
+    "TRC-041": {
+      "id": "TRC-041",
+      "feature": "Compaction",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:12.762845+00:00",
+      "completed_at": "2026-10-24T09:01:12.827164+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_retention_ttl.py::test_TRC_041_compaction"
+      ],
+      "files": [
+        "backend/src/storage/retention.py"
+      ],
+      "evidence": "docs/evidence/TRC-041.md",
+      "notes": "Compaction job preserving trace summaries while reclaiming span space"
+    },
+    "TRC-042": {
+      "id": "TRC-042",
+      "feature": "TTL expiration",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 3/11 \u2014 Storage & Data Model",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T09:01:12.892629+00:00",
+      "completed_at": "2026-10-24T09:01:12.956722+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_retention_ttl.py::test_TRC_042_ttl_expiration"
+      ],
+      "files": [
+        "backend/src/storage/retention.py"
+      ],
+      "evidence": "docs/evidence/TRC-042.md",
+      "notes": "Automated TTL expiration deleting expired spans and traces past cutoff"
+    },
+    "TRC-043": {
+      "id": "TRC-043",
+      "feature": "Tenant isolation",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:20:34.220094+00:00",
+      "completed_at": "2026-10-24T04:32:37.013181+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_tenant_isolation.py::test_tenant_creation_and_lookup",
+        "backend/tests/test_tenant_isolation.py::test_tenant_isolation_rls_reads",
+        "backend/tests/test_tenant_isolation.py::test_tenant_isolation_rls_prevents_cross_tenant_writes"
+      ],
+      "files": [
+        "backend/src/storage/models.py",
+        "backend/src/storage/db.py",
+        "backend/src/security/tenant.py"
+      ],
+      "evidence": "docs/evidence/TRC-043.md",
+      "notes": "PostgreSQL 16 RLS tenant isolation verified with multi-tenant tables and cross-tenant checks"
+    },
+    "TRC-044": {
+      "id": "TRC-044",
+      "feature": "Tenant-scoped trace IDs",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:32:51.441333+00:00",
+      "completed_at": "2026-10-24T04:34:38.863391+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_tenant_scoped_trace_ids.py::test_tenant_scoped_trace_id_validation",
+        "backend/tests/test_tenant_scoped_trace_ids.py::test_identical_trace_id_across_different_tenants"
+      ],
+      "files": [
+        "backend/src/security/trace_scope.py"
+      ],
+      "evidence": "docs/evidence/TRC-044.md",
+      "notes": "Composite (tenant_id, trace_id) keys verified with cross-tenant collision immunity in PostgreSQL 16"
+    },
+    "TRC-045": {
+      "id": "TRC-045",
+      "feature": "API-key authentication",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:34:53.083366+00:00",
+      "completed_at": "2026-10-24T04:36:47.278537+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_api_key_auth.py::test_api_key_creation_and_hashing",
+        "backend/tests/test_api_key_auth.py::test_api_key_successful_authentication",
+        "backend/tests/test_api_key_auth.py::test_api_key_invalid_and_tampered_fails",
+        "backend/tests/test_api_key_auth.py::test_api_key_revocation"
+      ],
+      "files": [
+        "backend/src/security/api_key.py"
+      ],
+      "evidence": "docs/evidence/TRC-045.md",
+      "notes": "Argon2id hashing, secure prefixing, tenant binding, and revocation verified against PostgreSQL 16"
+    },
+    "TRC-046": {
+      "id": "TRC-046",
+      "feature": "OAuth/OIDC integration",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:36:59.190850+00:00",
+      "completed_at": "2026-10-24T04:38:42.692118+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_oidc_integration.py::test_oidc_claims_parsing",
+        "backend/tests/test_oidc_integration.py::test_oidc_claims_validation_failures",
+        "backend/tests/test_oidc_integration.py::test_oidc_tenant_resolution_and_provisioning"
+      ],
+      "files": [
+        "backend/src/security/oidc.py"
+      ],
+      "evidence": "docs/evidence/TRC-046.md",
+      "notes": "OIDC claims parsing, issuer/audience validation, and PostgreSQL tenant provisioning verified"
+    },
+    "TRC-047": {
+      "id": "TRC-047",
+      "feature": "JWT validation",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:38:55.679436+00:00",
+      "completed_at": "2026-10-24T04:41:27.247621+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_jwt_validation.py::test_jwt_hs256_valid_verification",
+        "backend/tests/test_jwt_validation.py::test_jwt_rs256_asymmetric_verification",
+        "backend/tests/test_jwt_validation.py::test_jwt_expired_raises",
+        "backend/tests/test_jwt_validation.py::test_jwt_tampered_signature_raises",
+        "backend/tests/test_jwt_validation.py::test_jwt_banned_none_algorithm_rejected",
+        "backend/tests/test_jwt_validation.py::test_jwt_validate_token_and_tenant"
+      ],
+      "files": [
+        "backend/src/security/jwt_validator.py"
+      ],
+      "evidence": "docs/evidence/TRC-047.md",
+      "notes": "RS256/HS256 signature verification, claims validation, none-algorithm rejection, and DB tenant check verified"
+    },
+    "TRC-048": {
+      "id": "TRC-048",
+      "feature": "mTLS support",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:41:42.786514+00:00",
+      "completed_at": "2026-10-24T04:44:07.021133+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_mtls_support.py::test_mtls_valid_cert_verification",
+        "backend/tests/test_mtls_support.py::test_mtls_untrusted_ca_fails",
+        "backend/tests/test_mtls_support.py::test_mtls_expired_cert_fails",
+        "backend/tests/test_mtls_support.py::test_mtls_authenticate_with_postgres_tenant"
+      ],
+      "files": [
+        "backend/src/security/mtls.py"
+      ],
+      "evidence": "docs/evidence/TRC-048.md",
+      "notes": "X.509 client certificate chain verification, SAN URI tenant parsing, validity checking, and DB tenant check verified"
+    },
+    "TRC-049": {
+      "id": "TRC-049",
+      "feature": "Role-based access",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:44:20.754173+00:00",
+      "completed_at": "2026-10-24T04:46:17.368235+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_role_based_access.py::test_rbac_matrix_permissions",
+        "backend/tests/test_role_based_access.py::test_rbac_deny_by_default",
+        "backend/tests/test_role_based_access.py::test_rbac_integration_with_db_api_key"
+      ],
+      "files": [
+        "backend/src/security/rbac.py"
+      ],
+      "evidence": "docs/evidence/TRC-049.md",
+      "notes": "RBAC deny-by-default server authorization and PostgreSQL API key role integration verified"
+    },
+    "TRC-050": {
+      "id": "TRC-050",
+      "feature": "Trace-level authorization",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:46:33.514521+00:00",
+      "completed_at": "2026-10-24T04:48:22.799172+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_trace_authorization.py::test_service_scope_authorization",
+        "backend/tests/test_trace_authorization.py::test_classification_tag_authorization",
+        "backend/tests/test_trace_authorization.py::test_trace_authorization_with_db_record"
+      ],
+      "files": [
+        "backend/src/security/trace_auth.py"
+      ],
+      "evidence": "docs/evidence/TRC-050.md",
+      "notes": "Fine-grained service scope and classification tag authorization verified against PostgreSQL 16"
+    },
+    "TRC-051": {
+      "id": "TRC-051",
+      "feature": "Sensitive attribute redaction",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:48:34.632128+00:00",
+      "completed_at": "2026-10-24T04:50:14.402011+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_attribute_redaction.py::test_sensitive_attribute_redaction_top_and_nested",
+        "backend/tests/test_attribute_redaction.py::test_sensitive_attribute_redaction_persisted_to_postgres"
+      ],
+      "files": [
+        "backend/src/security/redaction.py"
+      ],
+      "evidence": "docs/evidence/TRC-051.md",
+      "notes": "Recursive sensitive attribute redaction verified with raw PostgreSQL JSONB inspection"
+    },
+    "TRC-052": {
+      "id": "TRC-052",
+      "feature": "PII filtering",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:50:29.036802+00:00",
+      "completed_at": "2026-10-24T04:52:32.851716+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_pii_filtering.py::test_pii_pattern_sanitization",
+        "backend/tests/test_pii_filtering.py::test_pii_nested_data_sanitization",
+        "backend/tests/test_pii_filtering.py::test_pii_filtering_persisted_to_postgres"
+      ],
+      "files": [
+        "backend/src/security/pii_filter.py"
+      ],
+      "evidence": "docs/evidence/TRC-052.md",
+      "notes": "PII detection and sanitization for emails, SSNs, cards, phones, and IPs verified in PostgreSQL 16"
+    },
+    "TRC-053": {
+      "id": "TRC-053",
+      "feature": "Header redaction",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:53:01.953702+00:00",
+      "completed_at": "2026-10-24T04:55:38.721783+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_header_redaction.py::test_header_redaction_direct_map",
+        "backend/tests/test_header_redaction.py::test_header_redaction_otel_attributes",
+        "backend/tests/test_header_redaction.py::test_header_redaction_persisted_to_postgres"
+      ],
+      "files": [
+        "backend/src/security/header_redaction.py"
+      ],
+      "evidence": "docs/evidence/TRC-053.md",
+      "notes": "HTTP and OpenTelemetry header attribute redaction verified with raw PostgreSQL JSONB inspection"
+    },
+    "TRC-054": {
+      "id": "TRC-054",
+      "feature": "Payload size limits",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:56:05.841794+00:00",
+      "completed_at": "2026-10-24T04:58:08.753662+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_payload_size_limits.py::test_request_body_byte_size_limits",
+        "backend/tests/test_payload_size_limits.py::test_attribute_and_string_truncation",
+        "backend/tests/test_payload_size_limits.py::test_payload_limits_persisted_to_postgres"
+      ],
+      "files": [
+        "backend/src/security/payload_limiter.py"
+      ],
+      "evidence": "docs/evidence/TRC-054.md",
+      "notes": "Payload byte bounds, string length truncation, attribute count capping, and Postgres storage verified"
+    },
+    "TRC-055": {
+      "id": "TRC-055",
+      "feature": "Query rate limiting",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 4/11 \u2014 Security & Multi-Tenancy",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T04:58:36.452480+00:00",
+      "completed_at": "2026-10-24T05:02:52.715014+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_query_rate_limiting.py::test_redis_sliding_window_rate_limiter",
+        "backend/tests/test_query_rate_limiting.py::test_multi_tenant_rate_limit_isolation",
+        "backend/tests/test_query_rate_limiting.py::test_rate_limiter_postgres_tenant_config"
+      ],
+      "files": [
+        "backend/src/security/rate_limiter.py"
+      ],
+      "evidence": "docs/evidence/TRC-055.md",
+      "notes": "Redis sliding-window rate limiting, tenant quota isolation, and PostgreSQL custom limits verified"
+    },
+    "TRC-056": {
+      "id": "TRC-056",
+      "feature": "OTLP ingestion",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:03:36.474450+00:00",
+      "completed_at": "2026-10-24T05:08:39.907365+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_otlp_ingestion.py::test_otlp_protobuf_ingest_and_postgres_storage"
+      ],
+      "files": [
+        "backend/src/collector/otlp.py",
+        "backend/tests/test_otlp_ingestion.py"
+      ],
+      "evidence": "docs/evidence/TRC-056.md",
+      "notes": "Official protobuf ExportTraceServiceRequest ingestion with normalization and PostgreSQL 16 persistence."
+    },
+    "TRC-057": {
+      "id": "TRC-057",
+      "feature": "OTLP/gRPC receiver",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:42:54.136069+00:00",
+      "completed_at": "2026-10-24T05:42:54.210152+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_grpc_receiver.py::test_otlp_grpc_receiver_live_network_ingestion"
+      ],
+      "files": [
+        "backend/src/collector/grpc_receiver.py",
+        "backend/tests/test_grpc_receiver.py"
+      ],
+      "evidence": "docs/evidence/TRC-057.md",
+      "notes": "OTLP/gRPC receiver running over real gRPC async server with tenant metadata and DB persistence."
+    },
+    "TRC-058": {
+      "id": "TRC-058",
+      "feature": "OTLP/HTTP receiver",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:43:01.064363+00:00",
+      "completed_at": "2026-10-24T05:43:01.152693+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_http_receiver.py::test_otlp_http_receiver_protobuf_and_json"
+      ],
+      "files": [
+        "backend/src/collector/http_receiver.py",
+        "backend/tests/test_http_receiver.py"
+      ],
+      "evidence": "docs/evidence/TRC-058.md",
+      "notes": "OTLP/HTTP receiver endpoint /v1/traces supporting protobuf and JSON with PostgreSQL 16 persistence."
+    },
+    "TRC-059": {
+      "id": "TRC-059",
+      "feature": "Batch span ingestion",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:13:59.696075+00:00",
+      "completed_at": "2026-10-24T05:15:59.203837+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_batch_span_ingestion.py::test_batch_span_ingestion_bulk_write"
+      ],
+      "files": [
+        "backend/src/collector/otlp.py",
+        "backend/tests/test_batch_span_ingestion.py"
+      ],
+      "evidence": "docs/evidence/TRC-059.md",
+      "notes": "Batch span bulk insertion into PostgreSQL 16 with chunked transactions."
+    },
+    "TRC-060": {
+      "id": "TRC-060",
+      "feature": "Streaming ingestion",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:16:13.350784+00:00",
+      "completed_at": "2026-10-24T05:18:03.436518+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_streaming_ingestion.py::test_streaming_span_ingestion_pipeline"
+      ],
+      "files": [
+        "backend/src/collector/stream_ingest.py",
+        "backend/tests/test_streaming_ingestion.py"
+      ],
+      "evidence": "docs/evidence/TRC-060.md",
+      "notes": "Asynchronous streaming span ingestion with chunked flushing into PostgreSQL 16."
+    },
+    "TRC-061": {
+      "id": "TRC-061",
+      "feature": "Payload validation",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:18:14.790831+00:00",
+      "completed_at": "2026-10-24T05:20:08.648133+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_payload_validation.py::test_payload_validator_trace_and_span_ids",
+        "backend/tests/test_payload_validation.py::test_payload_validator_timestamps",
+        "backend/tests/test_payload_validation.py::test_payload_validator_service_name",
+        "backend/tests/test_payload_validation.py::test_validated_payload_database_persistence"
+      ],
+      "files": [
+        "backend/src/collector/validator.py",
+        "backend/tests/test_payload_validation.py"
+      ],
+      "evidence": "docs/evidence/TRC-061.md",
+      "notes": "Strict validation of span IDs, trace IDs, duration, service names, and storage invariants."
+    },
+    "TRC-062": {
+      "id": "TRC-062",
+      "feature": "Schema validation",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:43:09.031540+00:00",
+      "completed_at": "2026-10-24T05:43:09.130563+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_schema_validation.py::test_schema_validator_urls",
+        "backend/tests/test_schema_validation.py::test_schema_validator_attribute_types",
+        "backend/tests/test_schema_validation.py::test_schema_validated_span_persistence"
+      ],
+      "files": [
+        "backend/src/collector/schema_validator.py",
+        "backend/tests/test_schema_validation.py"
+      ],
+      "evidence": "docs/evidence/TRC-062.md",
+      "notes": "OpenTelemetry 1.x schema compliance validator for URLs, attribute specifications, and database records."
+    },
+    "TRC-063": {
+      "id": "TRC-063",
+      "feature": "Malformed span handling",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:22:22.485666+00:00",
+      "completed_at": "2026-10-24T05:24:56.066180+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_malformed_span_handling.py::test_mixed_batch_malformed_span_handling"
+      ],
+      "files": [
+        "backend/src/collector/otlp.py",
+        "backend/tests/test_malformed_span_handling.py"
+      ],
+      "evidence": "docs/evidence/TRC-063.md",
+      "notes": "Isolation and partial success error reporting for malformed spans without batch abort."
+    },
+    "TRC-064": {
+      "id": "TRC-064",
+      "feature": "Backpressure",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:25:14.259998+00:00",
+      "completed_at": "2026-10-24T05:29:20.664829+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_backpressure.py::test_backpressure_controller_limits_and_counters",
+        "backend/tests/test_backpressure.py::test_http_endpoint_backpressure_429"
+      ],
+      "files": [
+        "backend/src/collector/backpressure.py",
+        "backend/src/collector/http_receiver.py",
+        "backend/tests/test_backpressure.py"
+      ],
+      "evidence": "docs/evidence/TRC-064.md",
+      "notes": "Queue saturation control returning HTTP 429 Retry-After with bounded memory and rejection counters."
+    },
+    "TRC-065": {
+      "id": "TRC-065",
+      "feature": "Queue buffering",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:29:42.362526+00:00",
+      "completed_at": "2026-10-24T05:31:18.247386+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_queue_buffering.py::test_redis_stream_queue_buffering"
+      ],
+      "files": [
+        "backend/src/collector/queue_buffer.py",
+        "backend/tests/test_queue_buffering.py"
+      ],
+      "evidence": "docs/evidence/TRC-065.md",
+      "notes": "Redis Streams queue buffering with XADD, consumer groups, XREADGROUP, and ACK processing."
+    },
+    "TRC-066": {
+      "id": "TRC-066",
+      "feature": "Batch processing",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:31:30.495891+00:00",
+      "completed_at": "2026-10-24T05:33:14.514610+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_batch_processing_worker.py::test_queue_batch_worker_drain_to_postgres"
+      ],
+      "files": [
+        "backend/src/collector/batch_worker.py",
+        "backend/tests/test_batch_processing_worker.py"
+      ],
+      "evidence": "docs/evidence/TRC-066.md",
+      "notes": "Queue batch worker draining Redis Streams and committing bulk transactions into PostgreSQL 16."
+    },
+    "TRC-067": {
+      "id": "TRC-067",
+      "feature": "Ingestion retries",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:33:58.055451+00:00",
+      "completed_at": "2026-10-24T05:36:29.521930+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ingestion_retries.py::test_retry_on_transient_failure_success",
+        "backend/tests/test_ingestion_retries.py::test_retry_exhaustion",
+        "backend/tests/test_ingestion_retries.py::test_database_retry_and_eventual_persistence"
+      ],
+      "files": [
+        "backend/src/collector/retry_ingest.py",
+        "backend/tests/test_ingestion_retries.py"
+      ],
+      "evidence": "docs/evidence/TRC-067.md",
+      "notes": "Exponential backoff retry logic for transient database errors with eventual PostgreSQL 16 persistence."
+    },
+    "TRC-068": {
+      "id": "TRC-068",
+      "feature": "Partial failure handling",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:36:44.803020+00:00",
+      "completed_at": "2026-10-24T05:38:24.361627+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_partial_failure.py::test_partial_failure_handling_and_otlp_response"
+      ],
+      "files": [
+        "backend/src/collector/partial_failure.py",
+        "backend/tests/test_partial_failure.py"
+      ],
+      "evidence": "docs/evidence/TRC-068.md",
+      "notes": "Partial failure isolation with standard OTLP ExportTracePartialSuccess responses."
+    },
+    "TRC-069": {
+      "id": "TRC-069",
+      "feature": "Duplicate span handling",
+      "layers": [
+        "BE",
+        "DB"
+      ],
+      "priority": "P0",
+      "area": "Area 5/11 \u2014 Collector & Ingestion",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T05:38:38.367493+00:00",
+      "completed_at": "2026-10-24T05:40:27.766354+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_duplicate_span_handling.py::test_duplicate_batch_redelivery_idempotent"
+      ],
+      "files": [
+        "backend/src/collector/idempotent_ingest.py",
+        "backend/tests/test_duplicate_span_handling.py"
+      ],
+      "evidence": "docs/evidence/TRC-069.md",
+      "notes": "Idempotent span batch ingestion and deduplication on (tenant_id, trace_id, span_id) in PostgreSQL 16."
+    },
+    "TRC-070": {
+      "id": "TRC-070",
+      "feature": "Trace lookup by ID",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:02:34.345237+00:00",
+      "completed_at": "2026-10-24T06:05:59.201169+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_trace_lookup.py::test_trace_lookup_by_id"
+      ],
+      "files": [
+        "backend/src/query/trace_lookup.py",
+        "backend/tests/test_trace_lookup.py"
+      ],
+      "evidence": "docs/evidence/TRC-070.md",
+      "notes": "Hierarchical trace lookup by ID with root span detection and tenant isolation in PostgreSQL 16."
+    },
+    "TRC-071": {
+      "id": "TRC-071",
+      "feature": "Trace search",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:06:25.743203+00:00",
+      "completed_at": "2026-10-24T06:09:05.479223+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_trace_search.py::test_trace_search_multi_tenant"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_trace_search.py"
+      ],
+      "evidence": "docs/evidence/TRC-071.md",
+      "notes": "Aggregated multi-tenant trace search with duration and error detection in PostgreSQL 16."
+    },
+    "TRC-072": {
+      "id": "TRC-072",
+      "feature": "Service filter",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:09:25.007544+00:00",
+      "completed_at": "2026-10-24T06:12:36.748597+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_service_filter.py::test_trace_search_service_filter"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_service_filter.py"
+      ],
+      "evidence": "docs/evidence/TRC-072.md",
+      "notes": "Service filter query on distributed traces in PostgreSQL 16."
+    },
+    "TRC-073": {
+      "id": "TRC-073",
+      "feature": "Operation filter",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:12:46.689656+00:00",
+      "completed_at": "2026-10-24T06:16:32.868732+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_operation_filter.py::test_trace_search_operation_filter"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_operation_filter.py"
+      ],
+      "evidence": "docs/evidence/TRC-073.md",
+      "notes": "Operation filter on span name across tenant-scoped traces in PostgreSQL 16."
+    },
+    "TRC-074": {
+      "id": "TRC-074",
+      "feature": "Duration filter",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:16:32.995656+00:00",
+      "completed_at": "2026-10-24T06:19:48.907496+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_duration_filter.py::test_TRC_074_duration_filter"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_duration_filter.py"
+      ],
+      "evidence": "docs/evidence/TRC-074.md",
+      "notes": "Duration filter via PostgreSQL HAVING clause on trace aggregations."
+    },
+    "TRC-075": {
+      "id": "TRC-075",
+      "feature": "Status filter",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:16:33.069643+00:00",
+      "completed_at": "2026-10-24T06:19:48.980229+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_status_filter.py::test_TRC_075_status_filter"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_status_filter.py"
+      ],
+      "evidence": "docs/evidence/TRC-075.md",
+      "notes": "Status filter via subquery matching status_code values OK/ERROR/UNSET."
+    },
+    "TRC-076": {
+      "id": "TRC-076",
+      "feature": "Time-range filter",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:16:33.183770+00:00",
+      "completed_at": "2026-10-24T06:19:49.041610+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_time_range_filter.py::test_TRC_076_time_range_filter"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_time_range_filter.py"
+      ],
+      "evidence": "docs/evidence/TRC-076.md",
+      "notes": "Time-range filter on start_time_unix_nano with min/max bounds in nanoseconds."
+    },
+    "TRC-077": {
+      "id": "TRC-077",
+      "feature": "Attribute filter",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:19:59.830019+00:00",
+      "completed_at": "2026-10-24T06:25:15.106480+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_attribute_filter.py::test_TRC_077_attribute_filter"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_attribute_filter.py"
+      ],
+      "evidence": "docs/evidence/TRC-077.md",
+      "notes": "JSONB attribute containment query in trace search"
+    },
+    "TRC-078": {
+      "id": "TRC-078",
+      "feature": "Tag search",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:19:59.916339+00:00",
+      "completed_at": "2026-10-24T06:25:15.784163+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_tag_search.py::test_TRC_078_tag_search"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_tag_search.py"
+      ],
+      "evidence": "docs/evidence/TRC-078.md",
+      "notes": "Tag key existence filtering with PostgreSQL JSONB"
+    },
+    "TRC-079": {
+      "id": "TRC-079",
+      "feature": "Trace pagination",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:20:00.019704+00:00",
+      "completed_at": "2026-10-24T06:25:16.340567+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_trace_pagination.py::test_TRC_079_trace_pagination"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_trace_pagination.py"
+      ],
+      "evidence": "docs/evidence/TRC-079.md",
+      "notes": "Trace search pagination using offset and limit"
+    },
+    "TRC-080": {
+      "id": "TRC-080",
+      "feature": "Cursor pagination",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:25:31.428053+00:00",
+      "completed_at": "2026-10-24T06:29:34.249425+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_cursor_pagination.py::test_TRC_080_cursor_pagination"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_cursor_pagination.py"
+      ],
+      "evidence": "docs/evidence/TRC-080.md",
+      "notes": "Keyset cursor pagination with base64 composite cursors"
+    },
+    "TRC-081": {
+      "id": "TRC-081",
+      "feature": "Sorting",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:25:31.504071+00:00",
+      "completed_at": "2026-10-24T06:29:34.347696+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_sorting.py::test_TRC_081_sorting"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_sorting.py"
+      ],
+      "evidence": "docs/evidence/TRC-081.md",
+      "notes": "Configurable sorting by start_time, duration, span_count"
+    },
+    "TRC-082": {
+      "id": "TRC-082",
+      "feature": "Full-text search",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:25:31.584646+00:00",
+      "completed_at": "2026-10-24T06:29:34.427459+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_fulltext_search.py::test_TRC_082_fulltext_search"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_fulltext_search.py"
+      ],
+      "evidence": "docs/evidence/TRC-082.md",
+      "notes": "Full-text and pattern search on spans"
+    },
+    "TRC-083": {
+      "id": "TRC-083",
+      "feature": "Trace aggregation",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 6/11 \u2014 Query & Trace Search",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:29:45.114615+00:00",
+      "completed_at": "2026-10-24T06:32:03.013272+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_trace_aggregation.py::test_TRC_083_trace_aggregation"
+      ],
+      "files": [
+        "backend/src/query/trace_search.py",
+        "backend/tests/test_trace_aggregation.py"
+      ],
+      "evidence": "docs/evidence/TRC-083.md",
+      "notes": "PostgreSQL aggregate trace metrics with counts, error rates, and duration stats"
+    },
+    "TRC-084": {
+      "id": "TRC-084",
+      "feature": "Head sampling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:32:31.233711+00:00",
+      "completed_at": "2026-10-24T06:37:09.237476+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_head_sampling.py::test_TRC_084_head_sampling"
+      ],
+      "files": [
+        "backend/src/sampling/head.py",
+        "backend/tests/test_head_sampling.py"
+      ],
+      "evidence": "docs/evidence/TRC-084.md",
+      "notes": "Head sampling evaluation at root span before execution"
+    },
+    "TRC-085": {
+      "id": "TRC-085",
+      "feature": "Probability sampling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:32:31.310334+00:00",
+      "completed_at": "2026-10-24T06:37:09.352369+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_probability_sampling.py::test_TRC_085_probability_sampling"
+      ],
+      "files": [
+        "backend/src/sampling/probability.py",
+        "backend/tests/test_probability_sampling.py"
+      ],
+      "evidence": "docs/evidence/TRC-085.md",
+      "notes": "Trace ID modulo probability sampling converging to target rate"
+    },
+    "TRC-086": {
+      "id": "TRC-086",
+      "feature": "Rate-based sampling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:32:31.381458+00:00",
+      "completed_at": "2026-10-24T06:37:09.430595+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_rate_based_sampling.py::test_TRC_086_rate_based_sampling"
+      ],
+      "files": [
+        "backend/src/sampling/rate_limiter.py",
+        "backend/tests/test_rate_based_sampling.py"
+      ],
+      "evidence": "docs/evidence/TRC-086.md",
+      "notes": "Token bucket rate-based sampling with burst capacity control"
+    },
+    "TRC-087": {
+      "id": "TRC-087",
+      "feature": "Parent-based sampling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:37:20.785237+00:00",
+      "completed_at": "2026-10-24T06:41:37.852509+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_parent_based_sampling.py::test_TRC_087_parent_based_sampling"
+      ],
+      "files": [
+        "backend/src/sampling/parent_based.py",
+        "backend/tests/test_parent_based_sampling.py"
+      ],
+      "evidence": "docs/evidence/TRC-087.md",
+      "notes": "OpenTelemetry ParentBased sampling hierarchy and delegation"
+    },
+    "TRC-088": {
+      "id": "TRC-088",
+      "feature": "Trace-ID sampling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:37:20.882415+00:00",
+      "completed_at": "2026-10-24T06:41:37.934389+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_trace_id_sampling.py::test_TRC_088_trace_id_sampling"
+      ],
+      "files": [
+        "backend/src/sampling/trace_id.py",
+        "backend/tests/test_trace_id_sampling.py"
+      ],
+      "evidence": "docs/evidence/TRC-088.md",
+      "notes": "Deterministic trace ID modulo ratio sampling across services"
+    },
+    "TRC-089": {
+      "id": "TRC-089",
+      "feature": "Sampling policies",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:37:20.956780+00:00",
+      "completed_at": "2026-10-24T06:41:38.004127+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_sampling_policies.py::test_TRC_089_sampling_policies"
+      ],
+      "files": [
+        "backend/src/sampling/policies.py",
+        "backend/tests/test_sampling_policies.py"
+      ],
+      "evidence": "docs/evidence/TRC-089.md",
+      "notes": "Sequential rule-based sampling policy engine with pattern matching"
+    },
+    "TRC-090": {
+      "id": "TRC-090",
+      "feature": "Per-service sampling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:41:52.975262+00:00",
+      "completed_at": "2026-10-24T06:46:25.441910+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_per_service_sampling.py::test_TRC_090_per_service_sampling"
+      ],
+      "files": [
+        "backend/src/sampling/service_sampler.py",
+        "backend/tests/test_per_service_sampling.py"
+      ],
+      "evidence": "docs/evidence/TRC-090.md",
+      "notes": "Per-service configurable sampling rates and dynamic updates"
+    },
+    "TRC-091": {
+      "id": "TRC-091",
+      "feature": "Per-route sampling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:41:53.056815+00:00",
+      "completed_at": "2026-10-24T06:46:25.553831+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_per_route_sampling.py::test_TRC_091_per_route_sampling"
+      ],
+      "files": [
+        "backend/src/sampling/route_sampler.py",
+        "backend/tests/test_per_route_sampling.py"
+      ],
+      "evidence": "docs/evidence/TRC-091.md",
+      "notes": "Per-route sampling with template matching and default fallbacks"
+    },
+    "TRC-092": {
+      "id": "TRC-092",
+      "feature": "Error-aware sampling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:41:53.124732+00:00",
+      "completed_at": "2026-10-24T06:46:25.621112+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_error_aware_sampling.py::test_TRC_092_error_aware_sampling"
+      ],
+      "files": [
+        "backend/src/sampling/error_aware.py",
+        "backend/tests/test_error_aware_sampling.py"
+      ],
+      "evidence": "docs/evidence/TRC-092.md",
+      "notes": "Guaranteed retention for error spans, HTTP 5xx, and exceptions"
+    },
+    "TRC-093": {
+      "id": "TRC-093",
+      "feature": "Latency-aware sampling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:46:37.130429+00:00",
+      "completed_at": "2026-10-24T06:50:31.542341+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_latency_aware_sampling.py::test_TRC_093_latency_aware_sampling"
+      ],
+      "files": [
+        "backend/src/sampling/latency_sampler.py",
+        "backend/tests/test_latency_aware_sampling.py"
+      ],
+      "evidence": "docs/evidence/TRC-093.md",
+      "notes": "Latency threshold sampling retaining slow operations"
+    },
+    "TRC-094": {
+      "id": "TRC-094",
+      "feature": "Tail sampling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:46:37.219346+00:00",
+      "completed_at": "2026-10-24T06:50:31.630666+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_tail_sampling.py::test_TRC_094_tail_sampling"
+      ],
+      "files": [
+        "backend/src/sampling/tail.py",
+        "backend/tests/test_tail_sampling.py"
+      ],
+      "evidence": "docs/evidence/TRC-094.md",
+      "notes": "Multi-attribute tail sampling evaluation over entire traces"
+    },
+    "TRC-095": {
+      "id": "TRC-095",
+      "feature": "Tail-sampling buffer",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:46:37.289593+00:00",
+      "completed_at": "2026-10-24T06:50:31.705293+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_tail_sampling_buffer.py::test_TRC_095_tail_sampling_buffer"
+      ],
+      "files": [
+        "backend/src/sampling/tail_buffer.py",
+        "backend/tests/test_tail_sampling_buffer.py"
+      ],
+      "evidence": "docs/evidence/TRC-095.md",
+      "notes": "Memory-bounded tail sampling buffer with decision window"
+    },
+    "TRC-096": {
+      "id": "TRC-096",
+      "feature": "Tail-sampling decision window",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:50:44.012267+00:00",
+      "completed_at": "2026-10-24T06:54:23.338071+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_tail_decision_window.py::test_TRC_096_tail_decision_window"
+      ],
+      "files": [
+        "backend/src/sampling/tail_window.py",
+        "backend/tests/test_tail_decision_window.py"
+      ],
+      "evidence": "docs/evidence/TRC-096.md",
+      "notes": "Tail sampling decision window with late span attachment"
+    },
+    "TRC-097": {
+      "id": "TRC-097",
+      "feature": "Priority sampling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 7/11 \u2014 Sampling & Tail Analysis",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:50:45.238423+00:00",
+      "completed_at": "2026-10-24T06:54:23.474712+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_priority_sampling.py::test_TRC_097_priority_sampling"
+      ],
+      "files": [
+        "backend/src/sampling/priority.py",
+        "backend/tests/test_priority_sampling.py"
+      ],
+      "evidence": "docs/evidence/TRC-097.md",
+      "notes": "Priority class sampling (CRITICAL/HIGH/NORMAL/LOW) based on span attributes"
+    },
+    "TRC-098": {
+      "id": "TRC-098",
+      "feature": "Trace API",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:54:56.380228+00:00",
+      "completed_at": "2026-10-24T07:00:00.702938+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_trace_api.py::test_TRC_098_trace_api"
+      ],
+      "files": [
+        "backend/src/api/routes/traces.py",
+        "backend/src/api/app.py",
+        "backend/tests/test_trace_api.py"
+      ],
+      "evidence": "docs/evidence/TRC-098.md",
+      "notes": "REST API for trace lookup by ID with multi-tenant isolation"
+    },
+    "TRC-099": {
+      "id": "TRC-099",
+      "feature": "Search API",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:54:56.484756+00:00",
+      "completed_at": "2026-10-24T07:00:00.788881+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_search_api.py::test_TRC_099_search_api"
+      ],
+      "files": [
+        "backend/src/api/routes/traces.py",
+        "backend/tests/test_search_api.py"
+      ],
+      "evidence": "docs/evidence/TRC-099.md",
+      "notes": "REST API for trace search with filters, ordering, pagination"
+    },
+    "TRC-100": {
+      "id": "TRC-100",
+      "feature": "Service API",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T06:54:56.569897+00:00",
+      "completed_at": "2026-10-24T07:00:00.863094+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_service_api.py::test_TRC_100_service_api"
+      ],
+      "files": [
+        "backend/src/api/routes/services.py",
+        "backend/tests/test_service_api.py"
+      ],
+      "evidence": "docs/evidence/TRC-100.md",
+      "notes": "REST API listing services and operations per tenant"
+    },
+    "TRC-101": {
+      "id": "TRC-101",
+      "feature": "Dependency API",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:00:20.829499+00:00",
+      "completed_at": "2026-10-24T07:04:30.001309+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_dependency_api.py::test_TRC_101_dependency_api"
+      ],
+      "files": [
+        "backend/src/api/routes/dependencies.py",
+        "backend/tests/test_dependency_api.py"
+      ],
+      "evidence": "docs/evidence/TRC-101.md",
+      "notes": "Service dependency graph aggregation across caller/callee links"
+    },
+    "TRC-102": {
+      "id": "TRC-102",
+      "feature": "Sampling API",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:00:20.968321+00:00",
+      "completed_at": "2026-10-24T07:04:30.082137+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_sampling_api.py::test_TRC_102_sampling_api"
+      ],
+      "files": [
+        "backend/src/api/routes/sampling.py",
+        "backend/tests/test_sampling_api.py"
+      ],
+      "evidence": "docs/evidence/TRC-102.md",
+      "notes": "Dynamic sampling rules and policies management REST API"
+    },
+    "TRC-103": {
+      "id": "TRC-103",
+      "feature": "Ingestion API",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:00:21.049763+00:00",
+      "completed_at": "2026-10-24T07:04:30.160810+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ingestion_api.py::test_TRC_103_ingestion_api"
+      ],
+      "files": [
+        "backend/src/api/routes/ingestion.py",
+        "backend/tests/test_ingestion_api.py"
+      ],
+      "evidence": "docs/evidence/TRC-103.md",
+      "notes": "Batch span ingestion REST API with validation and database commit"
+    },
+    "TRC-104": {
+      "id": "TRC-104",
+      "feature": "Health endpoint",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:51:33.539033+00:00",
+      "completed_at": "2026-10-24T08:51:33.933186+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_health_endpoint.py::test_TRC_104_health_endpoint"
+      ],
+      "files": [
+        "backend/src/api/routes/ops.py",
+        "backend/src/api/app.py"
+      ],
+      "evidence": "docs/evidence/TRC-104.md",
+      "notes": "Health endpoint /healthz verified"
+    },
+    "TRC-105": {
+      "id": "TRC-105",
+      "feature": "Readiness endpoint",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:04:42.888735+00:00",
+      "completed_at": "2026-10-24T07:09:31.420454+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_readiness_endpoint.py::test_TRC_105_readiness_endpoint"
+      ],
+      "files": [
+        "backend/src/api/routes/ops.py",
+        "backend/tests/test_readiness_endpoint.py"
+      ],
+      "evidence": "docs/evidence/TRC-105.md",
+      "notes": "Readiness probe GET /readyz executing real DB dependency checks"
+    },
+    "TRC-106": {
+      "id": "TRC-106",
+      "feature": "Metrics endpoint",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:51:41.119754+00:00",
+      "completed_at": "2026-10-24T08:51:41.239537+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_metrics_endpoint.py::test_TRC_106_metrics_endpoint"
+      ],
+      "files": [
+        "backend/src/api/routes/ops.py",
+        "backend/tests/test_metrics_endpoint.py"
+      ],
+      "evidence": "docs/evidence/TRC-106.md",
+      "notes": "Prometheus metrics endpoint /metrics verified"
+    },
+    "TRC-107": {
+      "id": "TRC-107",
+      "feature": "Admin API",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:09:48.069579+00:00",
+      "completed_at": "2026-10-24T07:14:48.408035+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_admin_api.py::test_TRC_107_admin_api"
+      ],
+      "files": [
+        "backend/src/api/routes/admin.py",
+        "backend/tests/test_admin_api.py"
+      ],
+      "evidence": "docs/evidence/TRC-107.md",
+      "notes": "Admin maintenance and trace purge API"
+    },
+    "TRC-108": {
+      "id": "TRC-108",
+      "feature": "Configuration API",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:09:48.185278+00:00",
+      "completed_at": "2026-10-24T07:14:53.103191+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_configuration_api.py::test_TRC_108_configuration_api"
+      ],
+      "files": [
+        "backend/src/api/routes/config.py",
+        "backend/tests/test_configuration_api.py"
+      ],
+      "evidence": "docs/evidence/TRC-108.md",
+      "notes": "Dynamic engine configuration and tuning API"
+    },
+    "TRC-109": {
+      "id": "TRC-109",
+      "feature": "Tenant API",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:09:48.259779+00:00",
+      "completed_at": "2026-10-24T07:14:58.600195+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_tenant_api.py::test_TRC_109_tenant_api"
+      ],
+      "files": [
+        "backend/src/api/routes/tenants.py",
+        "backend/tests/test_tenant_api.py"
+      ],
+      "evidence": "docs/evidence/TRC-109.md",
+      "notes": "Tenant lifecycle management and metadata API"
+    },
+    "TRC-110": {
+      "id": "TRC-110",
+      "feature": "Authentication middleware",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:15:21.830189+00:00",
+      "completed_at": "2026-10-24T07:22:44.341864+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_auth_middleware.py::test_TRC_110_authentication_middleware"
+      ],
+      "files": [
+        "backend/src/api/middleware/auth.py",
+        "backend/tests/test_auth_middleware.py"
+      ],
+      "evidence": "docs/evidence/TRC-110.md",
+      "notes": "FastAPI authentication middleware with API key validation"
+    },
+    "TRC-111": {
+      "id": "TRC-111",
+      "feature": "Authorization middleware",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 8/11 \u2014 Backend APIs & Services",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:15:26.742581+00:00",
+      "completed_at": "2026-10-24T07:22:49.654546+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_authorization_middleware.py::test_TRC_111_authorization_middleware"
+      ],
+      "files": [
+        "backend/src/api/deps.py",
+        "backend/tests/test_authorization_middleware.py"
+      ],
+      "evidence": "docs/evidence/TRC-111.md",
+      "notes": "FastAPI RBAC authorization middleware and route dependencies"
+    },
+    "TRC-112": {
+      "id": "TRC-112",
+      "feature": "Trace explorer",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:24:20.110560+00:00",
+      "completed_at": "2026-10-24T07:35:52.275503+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_trace_explorer.py::test_TRC_112_trace_explorer"
+      ],
+      "files": [
+        "frontend/src/pages/TraceExplorer.tsx",
+        "backend/tests/test_ui_trace_explorer.py"
+      ],
+      "evidence": "docs/evidence/TRC-112.md",
+      "notes": "Trace Explorer UI and search integration"
+    },
+    "TRC-113": {
+      "id": "TRC-113",
+      "feature": "Trace detail page",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:24:25.505390+00:00",
+      "completed_at": "2026-10-24T07:35:58.603585+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_trace_detail.py::test_TRC_113_trace_detail_page"
+      ],
+      "files": [
+        "frontend/src/pages/TraceDetail.tsx",
+        "backend/tests/test_ui_trace_detail.py"
+      ],
+      "evidence": "docs/evidence/TRC-113.md",
+      "notes": "Trace Detail page with span breakdown and metadata"
+    },
+    "TRC-114": {
+      "id": "TRC-114",
+      "feature": "Waterfall timeline",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:24:30.815799+00:00",
+      "completed_at": "2026-10-24T07:36:09.327363+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_waterfall.py::test_TRC_114_waterfall_timeline"
+      ],
+      "files": [
+        "frontend/src/components/WaterfallTimeline.tsx",
+        "backend/tests/test_ui_waterfall.py"
+      ],
+      "evidence": "docs/evidence/TRC-114.md",
+      "notes": "Interactive waterfall execution timeline"
+    },
+    "TRC-115": {
+      "id": "TRC-115",
+      "feature": "Span tree",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:51:48.037411+00:00",
+      "completed_at": "2026-10-24T08:51:48.119556+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_span_tree.py::test_TRC_115_span_tree"
+      ],
+      "files": [
+        "frontend/src/components/SpanTree.tsx",
+        "frontend/src/pages/TraceDetail.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-115.md",
+      "notes": "Hierarchical recursive span tree component and view mode"
+    },
+    "TRC-116": {
+      "id": "TRC-116",
+      "feature": "Service map",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:36:33.521620+00:00",
+      "completed_at": "2026-10-24T07:43:20.477312+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_service_map.py::test_TRC_116_service_map"
+      ],
+      "files": [
+        "frontend/src/pages/ServiceMap.tsx",
+        "backend/tests/test_ui_service_map.py"
+      ],
+      "evidence": "docs/evidence/TRC-116.md",
+      "notes": "Architecture service topology map"
+    },
+    "TRC-117": {
+      "id": "TRC-117",
+      "feature": "Dependency graph",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:36:39.427747+00:00",
+      "completed_at": "2026-10-24T07:43:42.357606+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_dependency_graph.py::test_TRC_117_dependency_graph"
+      ],
+      "files": [
+        "frontend/src/components/DependencyGraph.tsx",
+        "backend/tests/test_ui_dependency_graph.py"
+      ],
+      "evidence": "docs/evidence/TRC-117.md",
+      "notes": "Inter-service dependency graph visualization"
+    },
+    "TRC-118": {
+      "id": "TRC-118",
+      "feature": "Latency charts",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:43:57.228994+00:00",
+      "completed_at": "2026-10-24T07:52:46.685905+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_latency_charts.py::test_TRC_118_latency_charts"
+      ],
+      "files": [
+        "frontend/src/components/LatencyCharts.tsx",
+        "backend/tests/test_ui_latency_charts.py"
+      ],
+      "evidence": "docs/evidence/TRC-118.md",
+      "notes": "Latency percentile breakdown and distribution charts"
+    },
+    "TRC-119": {
+      "id": "TRC-119",
+      "feature": "Error-rate charts",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:44:12.411545+00:00",
+      "completed_at": "2026-10-24T07:52:53.246389+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_error_rate_charts.py::test_TRC_119_error_rate_charts"
+      ],
+      "files": [
+        "frontend/src/components/ErrorRateCharts.tsx",
+        "backend/tests/test_ui_error_rate_charts.py"
+      ],
+      "evidence": "docs/evidence/TRC-119.md",
+      "notes": "Error-rate breakdown charts and service ratios"
+    },
+    "TRC-120": {
+      "id": "TRC-120",
+      "feature": "Span attribute viewer",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:44:26.738612+00:00",
+      "completed_at": "2026-10-24T07:53:00.481443+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_span_attributes.py::test_TRC_120_span_attribute_viewer"
+      ],
+      "files": [
+        "frontend/src/components/SpanAttributeViewer.tsx",
+        "backend/tests/test_ui_span_attributes.py"
+      ],
+      "evidence": "docs/evidence/TRC-120.md",
+      "notes": "Interactive span attribute viewer with type badges"
+    },
+    "TRC-121": {
+      "id": "TRC-121",
+      "feature": "Span event viewer",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:53:19.661506+00:00",
+      "completed_at": "2026-10-24T07:59:45.465630+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_span_events.py::test_TRC_121_span_event_viewer"
+      ],
+      "files": [
+        "frontend/src/components/SpanEventViewer.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-121.md",
+      "notes": "Span event viewer component rendering inline span events"
+    },
+    "TRC-122": {
+      "id": "TRC-122",
+      "feature": "Trace tags viewer",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:53:26.992424+00:00",
+      "completed_at": "2026-10-24T07:59:50.284298+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_trace_tags.py::test_TRC_122_trace_tags_viewer"
+      ],
+      "files": [
+        "frontend/src/components/TraceTagsViewer.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-122.md",
+      "notes": "Trace tags viewer component aggregating unique tags across spans"
+    },
+    "TRC-123": {
+      "id": "TRC-123",
+      "feature": "Trace links viewer",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T07:53:33.398386+00:00",
+      "completed_at": "2026-10-24T07:59:54.336985+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_trace_links.py::test_TRC_123_trace_links_viewer"
+      ],
+      "files": [
+        "frontend/src/components/TraceLinksViewer.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-123.md",
+      "notes": "Trace links viewer component displaying cross-trace link pointers"
+    },
+    "TRC-124": {
+      "id": "TRC-124",
+      "feature": "Critical-path highlight",
+      "layers": [
+        "FE",
+        "BE"
+      ],
+      "priority": "P1",
+      "area": "Area 9/11 \u2014 Frontend / Observability UI",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:00:03.362680+00:00",
+      "completed_at": "2026-10-24T08:03:53.957531+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_ui_critical_path.py::test_TRC_124_critical_path_pure_logic",
+        "backend/tests/test_ui_critical_path.py::test_TRC_124_critical_path_api"
+      ],
+      "files": [
+        "backend/src/query/critical_path.py",
+        "frontend/src/components/CriticalPathHighlight.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-124.md",
+      "notes": "Critical-path highlight analytics and UI component"
+    },
+    "TRC-125": {
+      "id": "TRC-125",
+      "feature": "High-throughput ingestion",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:04:18.107136+00:00",
+      "completed_at": "2026-10-24T08:06:50.612256+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_high_throughput_ingestion.py::test_TRC_125_high_throughput_ingestion"
+      ],
+      "files": [
+        "backend/src/collector/throughput_engine.py"
+      ],
+      "evidence": "docs/evidence/TRC-125.md",
+      "notes": "High-throughput batch ingestion engine and rate benchmarking"
+    },
+    "TRC-126": {
+      "id": "TRC-126",
+      "feature": "Concurrent ingestion",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:04:18.177862+00:00",
+      "completed_at": "2026-10-24T08:06:55.295620+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_concurrent_ingestion.py::test_TRC_126_concurrent_ingestion"
+      ],
+      "files": [
+        "backend/src/collector/throughput_engine.py"
+      ],
+      "evidence": "docs/evidence/TRC-126.md",
+      "notes": "Concurrent ingestion across parallel tenant workloads"
+    },
+    "TRC-127": {
+      "id": "TRC-127",
+      "feature": "Large-trace testing",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:04:18.246198+00:00",
+      "completed_at": "2026-10-24T08:07:02.524010+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_large_trace_testing.py::test_TRC_127_large_trace_testing"
+      ],
+      "files": [
+        "backend/src/collector/large_trace.py"
+      ],
+      "evidence": "docs/evidence/TRC-127.md",
+      "notes": "Large-trace ingestion, topological analysis, and API query"
+    },
+    "TRC-128": {
+      "id": "TRC-128",
+      "feature": "High-cardinality testing",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:07:11.878944+00:00",
+      "completed_at": "2026-10-24T08:09:06.253248+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_high_cardinality_testing.py::test_TRC_128_high_cardinality_testing"
+      ],
+      "files": [
+        "backend/src/storage/load_harness.py"
+      ],
+      "evidence": "docs/evidence/TRC-128.md",
+      "notes": "High-cardinality JSONB attribute indexing and retrieval benchmarks"
+    },
+    "TRC-129": {
+      "id": "TRC-129",
+      "feature": "Storage load testing",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:07:11.953279+00:00",
+      "completed_at": "2026-10-24T08:09:11.809770+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_load_testing.py::test_TRC_129_storage_load_testing"
+      ],
+      "files": [
+        "backend/src/storage/load_harness.py"
+      ],
+      "evidence": "docs/evidence/TRC-129.md",
+      "notes": "Storage load testing under concurrent batch writes and pool concurrency"
+    },
+    "TRC-130": {
+      "id": "TRC-130",
+      "feature": "Query load testing",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:07:12.014778+00:00",
+      "completed_at": "2026-10-24T08:09:17.655687+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_query_load_testing.py::test_TRC_130_query_load_testing"
+      ],
+      "files": [
+        "backend/src/storage/load_harness.py"
+      ],
+      "evidence": "docs/evidence/TRC-130.md",
+      "notes": "Query load testing with p50/p95 latency and concurrent operations"
+    },
+    "TRC-131": {
+      "id": "TRC-131",
+      "feature": "Latency benchmarking",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:09:29.051152+00:00",
+      "completed_at": "2026-10-24T08:11:58.756459+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_latency_benchmarking.py::test_TRC_131_latency_benchmarking"
+      ],
+      "files": [
+        "backend/src/observability/profiler.py"
+      ],
+      "evidence": "docs/evidence/TRC-131.md",
+      "notes": "Latency benchmarking percentiles and distribution analysis"
+    },
+    "TRC-132": {
+      "id": "TRC-132",
+      "feature": "Memory profiling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:09:29.122785+00:00",
+      "completed_at": "2026-10-24T08:12:03.286560+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_memory_profiling.py::test_TRC_132_memory_profiling"
+      ],
+      "files": [
+        "backend/src/observability/profiler.py"
+      ],
+      "evidence": "docs/evidence/TRC-132.md",
+      "notes": "Memory profiling using tracemalloc for span allocation analysis"
+    },
+    "TRC-133": {
+      "id": "TRC-133",
+      "feature": "CPU profiling",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:09:29.202382+00:00",
+      "completed_at": "2026-10-24T08:12:09.307465+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_cpu_profiling.py::test_TRC_133_cpu_profiling"
+      ],
+      "files": [
+        "backend/src/observability/profiler.py"
+      ],
+      "evidence": "docs/evidence/TRC-133.md",
+      "notes": "CPU profiling using cProfile across redaction and sanitization paths"
+    },
+    "TRC-134": {
+      "id": "TRC-134",
+      "feature": "Queue saturation testing",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:12:24.200264+00:00",
+      "completed_at": "2026-10-24T08:14:30.762468+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_queue_saturation_testing.py::test_TRC_134_queue_saturation_testing"
+      ],
+      "files": [
+        "backend/src/collector/backpressure.py"
+      ],
+      "evidence": "docs/evidence/TRC-134.md",
+      "notes": "Queue saturation testing and bounded capacity enforcement"
+    },
+    "TRC-135": {
+      "id": "TRC-135",
+      "feature": "Backpressure testing",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:12:24.271470+00:00",
+      "completed_at": "2026-10-24T08:14:38.656718+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_backpressure_testing.py::test_TRC_135_backpressure_testing"
+      ],
+      "files": [
+        "backend/src/collector/backpressure.py"
+      ],
+      "evidence": "docs/evidence/TRC-135.md",
+      "notes": "Backpressure testing with HTTP 429 and Retry-After header enforcement"
+    },
+    "TRC-136": {
+      "id": "TRC-136",
+      "feature": "Collector failover",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:12:24.335538+00:00",
+      "completed_at": "2026-10-24T08:14:46.422005+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_collector_failover.py::test_TRC_136_collector_failover"
+      ],
+      "files": [
+        "backend/src/collector/failover.py"
+      ],
+      "evidence": "docs/evidence/TRC-136.md",
+      "notes": "Collector failover routing between primary and standby replicas"
+    },
+    "TRC-137": {
+      "id": "TRC-137",
+      "feature": "Storage failover",
+      "layers": [
+        "BE"
+      ],
+      "priority": "P0",
+      "area": "Area 10/11 \u2014 Reliability",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:14:57.684015+00:00",
+      "completed_at": "2026-10-24T08:16:56.813424+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_storage_failover.py::test_TRC_137_storage_failover"
+      ],
+      "files": [
+        "backend/src/storage/failover_client.py"
+      ],
+      "evidence": "docs/evidence/TRC-137.md",
+      "notes": "Storage failover reconnection and retry with backoff"
+    },
+    "TRC-138": {
+      "id": "TRC-138",
+      "feature": "Trace anomaly detection",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:18:10.007306+00:00",
+      "completed_at": "2026-10-24T08:23:31.329105+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_trace_anomaly_detection.py::test_TRC_138_trace_anomaly_detection_model",
+        "backend/tests/test_trace_anomaly_detection.py::test_TRC_138_trace_anomaly_detection_api"
+      ],
+      "files": [
+        "ml/trace_anomaly.py",
+        "backend/src/api/routes/ml.py",
+        "frontend/src/components/AnomaliesViewer.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-138.md",
+      "notes": "IsolationForest trace anomaly detection model, API and UI viewer"
+    },
+    "TRC-139": {
+      "id": "TRC-139",
+      "feature": "Latency anomaly detection",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:51:54.151923+00:00",
+      "completed_at": "2026-10-24T08:52:10.518729+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_latency_anomaly_detection.py::test_TRC_139_latency_anomaly_model",
+        "backend/tests/test_latency_anomaly_detection.py::test_TRC_139_latency_anomaly_api"
+      ],
+      "files": [
+        "ml/latency_anomaly.py",
+        "backend/src/api/routes/ml.py",
+        "frontend/src/components/AnomaliesViewer.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-139.md",
+      "notes": "Latency anomaly detection with rolling median and MAD modified z-scores"
+    },
+    "TRC-140": {
+      "id": "TRC-140",
+      "feature": "Error-spike detection",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:18:10.144161+00:00",
+      "completed_at": "2026-10-24T08:23:45.903111+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_error_spike_detection.py::test_TRC_140_error_spike_model",
+        "backend/tests/test_error_spike_detection.py::test_TRC_140_error_spike_api"
+      ],
+      "files": [
+        "ml/error_spike.py",
+        "backend/src/api/routes/ml.py",
+        "frontend/src/components/AnomaliesViewer.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-140.md",
+      "notes": "CUSUM change-point and Poisson error-spike detector, API, and UI viewer"
+    },
+    "TRC-141": {
+      "id": "TRC-141",
+      "feature": "Root-cause candidate ranking",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:24:12.591502+00:00",
+      "completed_at": "2026-10-24T08:29:02.764379+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_root_cause_ranking.py::test_TRC_141_root_cause_ranking_logic",
+        "backend/tests/test_root_cause_ranking.py::test_TRC_141_root_cause_ranking_api"
+      ],
+      "files": [
+        "ml/root_cause.py",
+        "backend/src/api/routes/ml.py",
+        "frontend/src/components/AnomaliesViewer.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-141.md",
+      "notes": "Root-cause candidate ranking based on critical-path self-time and error propagation"
+    },
+    "TRC-142": {
+      "id": "TRC-142",
+      "feature": "Trace summarization",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:41:02.450996+00:00",
+      "completed_at": "2026-10-24T08:47:22.799260+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_trace_summarization.py::test_TRC_142_trace_summarization_direct_engine",
+        "backend/tests/test_trace_summarization.py::test_TRC_142_trace_summarization_api_endpoint"
+      ],
+      "files": [
+        "ml/llm_engine.py",
+        "backend/src/api/routes/ml.py",
+        "frontend/src/components/TraceSummarizer.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-142.md",
+      "notes": "Trace summarization with google/flan-t5-small and 503 unconfigured error path"
+    },
+    "TRC-143": {
+      "id": "TRC-143",
+      "feature": "Incident summarization",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:41:02.528142+00:00",
+      "completed_at": "2026-10-24T08:47:34.022531+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_incident_summarization.py::test_TRC_143_incident_summarization_direct_engine",
+        "backend/tests/test_incident_summarization.py::test_TRC_143_incident_summarization_api_endpoint"
+      ],
+      "files": [
+        "ml/llm_engine.py",
+        "backend/src/api/routes/ml.py",
+        "frontend/src/components/IncidentSummarizer.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-143.md",
+      "notes": "Multi-trace incident summarization with google/flan-t5-small"
+    },
+    "TRC-144": {
+      "id": "TRC-144",
+      "feature": "Natural-language trace queries",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:41:02.602077+00:00",
+      "completed_at": "2026-10-24T08:47:41.511417+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_nl_trace_queries.py::test_TRC_144_nl_query_translation_direct_engine",
+        "backend/tests/test_nl_trace_queries.py::test_TRC_144_nl_query_never_raw_sql",
+        "backend/tests/test_nl_trace_queries.py::test_TRC_144_nl_query_api_endpoint"
+      ],
+      "files": [
+        "ml/llm_engine.py",
+        "backend/src/api/routes/ml.py",
+        "frontend/src/components/NLQuerySearch.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-144.md",
+      "notes": "Natural language query translation to validated structured JSON query schema"
+    },
+    "TRC-145": {
+      "id": "TRC-145",
+      "feature": "Semantic trace search",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:29:30.307897+00:00",
+      "completed_at": "2026-10-24T08:34:34.261949+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_semantic_trace_search.py::test_TRC_145_semantic_trace_search_model",
+        "backend/tests/test_semantic_trace_search.py::test_TRC_145_semantic_trace_search_api"
+      ],
+      "files": [
+        "ml/semantic_search.py",
+        "backend/src/api/routes/ml.py"
+      ],
+      "evidence": "docs/evidence/TRC-145.md",
+      "notes": "Semantic trace search using SentenceTransformer all-MiniLM-L6-v2 vector embeddings"
+    },
+    "TRC-146": {
+      "id": "TRC-146",
+      "feature": "Service dependency anomaly detection",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:24:12.658300+00:00",
+      "completed_at": "2026-10-24T08:29:09.584782+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_dependency_anomaly.py::test_TRC_146_dependency_anomaly_logic",
+        "backend/tests/test_dependency_anomaly.py::test_TRC_146_dependency_anomaly_api"
+      ],
+      "files": [
+        "ml/dependency_anomaly.py",
+        "backend/src/api/routes/ml.py",
+        "frontend/src/components/AnomaliesViewer.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-146.md",
+      "notes": "Service dependency topology and call volume/latency anomaly detection"
+    },
+    "TRC-147": {
+      "id": "TRC-147",
+      "feature": "Performance regression detection",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:24:12.723002+00:00",
+      "completed_at": "2026-10-24T08:29:16.720163+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_performance_regression.py::test_TRC_147_performance_regression_logic",
+        "backend/tests/test_performance_regression.py::test_TRC_147_performance_regression_api"
+      ],
+      "files": [
+        "ml/performance_regression.py",
+        "backend/src/api/routes/ml.py",
+        "frontend/src/components/AnomaliesViewer.tsx"
+      ],
+      "evidence": "docs/evidence/TRC-147.md",
+      "notes": "Non-parametric Mann-Whitney U release performance regression test"
+    },
+    "TRC-148": {
+      "id": "TRC-148",
+      "feature": "Slow-span prediction",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:29:30.390710+00:00",
+      "completed_at": "2026-10-24T08:34:42.716146+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_slow_span_prediction.py::test_TRC_148_slow_span_prediction_model",
+        "backend/tests/test_slow_span_prediction.py::test_TRC_148_slow_span_prediction_api"
+      ],
+      "files": [
+        "ml/slow_span_predictor.py",
+        "backend/src/api/routes/ml.py"
+      ],
+      "evidence": "docs/evidence/TRC-148.md",
+      "notes": "Slow-span prediction using gradient-boosted trees and holdout metrics"
+    },
+    "TRC-149": {
+      "id": "TRC-149",
+      "feature": "Sampling recommendation",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:29:30.465733+00:00",
+      "completed_at": "2026-10-24T08:34:49.901783+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_sampling_recommendation.py::test_TRC_149_sampling_recommendation_logic",
+        "backend/tests/test_sampling_recommendation.py::test_TRC_149_sampling_recommendation_api"
+      ],
+      "files": [
+        "ml/sampling_recommendation.py",
+        "backend/src/api/routes/ml.py"
+      ],
+      "evidence": "docs/evidence/TRC-149.md",
+      "notes": "Budget-constrained sampling recommendation with error and latency guarantees"
+    },
+    "TRC-150": {
+      "id": "TRC-150",
+      "feature": "Dynamic sampling optimization",
+      "layers": [
+        "FE",
+        "BE",
+        "ML"
+      ],
+      "priority": "P2",
+      "area": "Area 11/11 \u2014 AI/ML & Intelligent Tracing",
+      "state": "COMPLETED",
+      "started_at": "2026-10-24T08:35:04.009001+00:00",
+      "completed_at": "2026-10-24T08:37:57.504580+00:00",
+      "verification": "REAL",
+      "tests": [
+        "backend/tests/test_dynamic_sampling_optimization.py::test_TRC_150_dynamic_sampling_optimization_logic",
+        "backend/tests/test_dynamic_sampling_optimization.py::test_TRC_150_dynamic_sampling_optimization_api"
+      ],
+      "files": [
+        "ml/dynamic_sampling.py",
+        "backend/src/api/routes/ml.py"
+      ],
+      "evidence": "docs/evidence/TRC-150.md",
+      "notes": "Dynamic sampling optimization with audit trail and guaranteed error/latency floors"
+    }
+  }
+}
