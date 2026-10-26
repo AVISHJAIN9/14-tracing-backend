@@ -59,7 +59,12 @@ export class TracingApiClient {
   private baseUrl: string;
   private tenantId: string;
 
-  constructor(baseUrl: string = '/api/v1', tenantId: string = 'default-tenant') {
+  constructor(
+    baseUrl: string = typeof window !== 'undefined' && window.location.hostname.includes('github.io')
+      ? 'https://aj-tracing-backend.onrender.com/api/v1'
+      : '/api/v1',
+    tenantId: string = 'default-tenant'
+  ) {
     this.baseUrl = baseUrl;
     this.tenantId = tenantId;
   }
