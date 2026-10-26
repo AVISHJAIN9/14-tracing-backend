@@ -17,18 +17,31 @@ from storage.models import Base
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "sqlite+aiosqlite:///:memory:"
+    "sqlite+aiosqlite:////tmp/tracing.db"
 )
 
+_default_engine: Optional[AsyncEngine] = None
+
 def create_engine(url: Optional[str] = None) -> AsyncEngine:
-    db_url = url or DATABASE_URL
+    global _default_engine
+    if url is not None:
+        db_url = url
+    else:
+        if _default_engine is not None:
+            return _default_engine
+        db_url = DATABASE_URL
+
     if "sqlite" in db_url:
-        return create_async_engine(db_url, echo=False)
-    return create_async_engine(
-        db_url,
-        echo=False,
-        poolclass=NullPool
-    )
+        eng = create_async_engine(db_url, echo=False)
+    else:
+        eng = create_async_engine(
+            db_url,
+            echo=False,
+            poolclass=NullPool
+        )
+    if url is None:
+        _default_engine = eng
+    return eng
 
 async def init_db(target_engine: Optional[AsyncEngine] = None) -> None:
     eng = target_engine or create_engine()

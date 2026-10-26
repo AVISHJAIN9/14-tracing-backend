@@ -3,9 +3,14 @@ FastAPI application for Distributed Tracing Backend.
 Exposes OpenTelemetry compatible REST APIs under /api/v1, /healthz, /readyz, /metrics.
 """
 
+import time
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import HTTPException
+from sqlalchemy import select, func
+from storage.db import init_db, get_db_session
+from storage.models import Tenant, TraceRecord, SpanRecord
 from api.routes.traces import router as traces_router
 from api.routes.services import router as services_router
 from api.routes.dependencies import router as dependencies_router
@@ -22,11 +27,71 @@ except Exception:
     ml_router = None
 from api.middleware.auth import AuthenticationMiddleware
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Initialize schema
+    await init_db()
+    # Seed demo traces on cold start if table is empty
+    try:
+        async with get_db_session() as session:
+            t_res = await session.execute(select(Tenant).where(Tenant.id == "default-tenant"))
+            if not t_res.scalar_one_or_none():
+                session.add(Tenant(id="default-tenant", name="Default Organization", status="active"))
+                await session.commit()
+
+            c_res = await session.execute(
+                select(func.count(TraceRecord.trace_id)).where(TraceRecord.tenant_id == "default-tenant")
+            )
+            count = c_res.scalar() or 0
+            if count == 0:
+                now_ns = int(time.time() * 1e9)
+                traces = [
+                    ("trace-checkout-001", "api-gateway", "POST /checkout", 145_000_000, 4, 0),
+                    ("trace-search-002", "api-gateway", "GET /search", 38_000_000, 2, 0),
+                    ("trace-order-003", "order-service", "POST /orders", 412_000_000, 5, 1),
+                    ("trace-user-004", "user-service", "GET /users/me", 19_000_000, 2, 0),
+                    ("trace-notify-005", "worker-service", "POST /notifications", 85_000_000, 3, 0),
+                ]
+                for tid, svc, op, dur, sc, ec in traces:
+                    session.add(TraceRecord(
+                        tenant_id="default-tenant",
+                        trace_id=tid,
+                        root_service_name=svc,
+                        root_name=op,
+                        start_time_unix_nano=now_ns - 1_000_000_000,
+                        end_time_unix_nano=now_ns - 1_000_000_000 + dur,
+                        duration_nanos=dur,
+                        span_count=sc,
+                        error_count=ec
+                    ))
+                    session.add(SpanRecord(
+                        tenant_id="default-tenant",
+                        trace_id=tid,
+                        span_id=tid.replace("trace-", "span-root-"),
+                        parent_span_id=None,
+                        name=op,
+                        kind="SERVER",
+                        start_time_unix_nano=now_ns - 1_000_000_000,
+                        end_time_unix_nano=now_ns - 1_000_000_000 + dur,
+                        duration_nanos=dur,
+                        status_code="ERROR" if ec > 0 else "OK",
+                        status_message="Downstream timeout" if ec > 0 else None,
+                        service_name=svc,
+                        attributes={"http.method": op.split()[0], "http.route": op.split()[1]},
+                        events=[],
+                        links=[]
+                    ))
+                await session.commit()
+    except Exception as e:
+        print(f"Warning: Demo seed skipped: {e}")
+    yield
+
 app = FastAPI(
     title="Distributed Tracing Backend API",
     version="1.0.0",
     docs_url="/docs",
-    openapi_url="/openapi.json"
+    openapi_url="/openapi.json",
+    lifespan=lifespan
 )
 
 @app.get("/health")

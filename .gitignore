@@ -12,3 +12,6 @@ dist/
 build/
 
 .venv/
+# Secrets protection
+.secrets.local
+*.local

@@ -14,10 +14,13 @@ from sqlalchemy import (
     PrimaryKeyConstraint,
     String,
     Text,
+    JSON,
     func
 )
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import DeclarativeBase, relationship
+
+JsonType = JSON().with_variant(JSONB, "postgresql")
 
 class Base(DeclarativeBase):
     pass
@@ -29,7 +32,7 @@ class Tenant(Base):
     name = Column(String(255), nullable=False)
     status = Column(String(32), nullable=False, default="active")
     created_at = Column(DateTime(timezone=True), nullable=False, default=lambda: datetime.now(timezone.utc))
-    settings = Column(JSONB, nullable=False, default=dict)
+    settings = Column(JsonType, nullable=False, default=dict)
 
     api_keys = relationship("ApiKey", back_populates="tenant", cascade="all, delete-orphan")
 
@@ -70,9 +73,9 @@ class SpanRecord(Base):
     duration_nanos = Column(BigInteger, nullable=False)
     status_code = Column(String(32), nullable=False)
     status_message = Column(Text, nullable=True)
-    attributes = Column(JSONB, nullable=False, default=dict)
-    events = Column(JSONB, nullable=False, default=list)
-    links = Column(JSONB, nullable=False, default=list)
+    attributes = Column(JsonType, nullable=False, default=dict)
+    events = Column(JsonType, nullable=False, default=list)
+    links = Column(JsonType, nullable=False, default=list)
     service_name = Column(String(255), nullable=False)
     created_at = Column(DateTime(timezone=True), nullable=False, default=lambda: datetime.now(timezone.utc))
 
