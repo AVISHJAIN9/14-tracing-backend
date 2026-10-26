@@ -17,11 +17,13 @@ from storage.models import Base
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql+asyncpg://tracing_app:tracing_app_password@localhost:5414/tracing_db"
+    "sqlite+aiosqlite:///:memory:"
 )
 
 def create_engine(url: Optional[str] = None) -> AsyncEngine:
     db_url = url or DATABASE_URL
+    if "sqlite" in db_url:
+        return create_async_engine(db_url, echo=False)
     return create_async_engine(
         db_url,
         echo=False,
@@ -50,11 +52,12 @@ async def get_db_session(
     )
     async with factory() as session:
         try:
-            if tenant_id:
-                safe_tenant = "".join(c for c in tenant_id if c.isalnum() or c in "-_")
-                await session.execute(text(f"SET app.current_tenant = '{safe_tenant}';"))
-            else:
-                await session.execute(text("RESET app.current_tenant;"))
+            if "sqlite" not in str(eng.url):
+                if tenant_id:
+                    safe_tenant = "".join(c for c in tenant_id if c.isalnum() or c in "-_")
+                    await session.execute(text(f"SET app.current_tenant = '{safe_tenant}';"))
+                else:
+                    await session.execute(text("RESET app.current_tenant;"))
             yield session
             await session.commit()
         except Exception:

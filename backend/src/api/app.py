@@ -16,7 +16,10 @@ from api.routes.admin import router as admin_router
 from api.routes.config import router as config_router
 from api.routes.tenants import router as tenants_router
 from api.routes.auth import router as auth_router
-from api.routes.ml import router as ml_router
+try:
+    from api.routes.ml import router as ml_router
+except Exception:
+    ml_router = None
 from api.middleware.auth import AuthenticationMiddleware
 
 app = FastAPI(
@@ -25,6 +28,10 @@ app = FastAPI(
     docs_url="/docs",
     openapi_url="/openapi.json"
 )
+
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
 
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
@@ -57,4 +64,6 @@ app.include_router(ingestion_router, prefix="/api/v1")
 app.include_router(admin_router, prefix="/api/v1")
 app.include_router(config_router, prefix="/api/v1")
 app.include_router(tenants_router, prefix="/api/v1")
-app.include_router(ml_router, prefix="/api/v1")
+if ml_router:
+    app.include_router(ml_router, prefix="/api/v1")
+
